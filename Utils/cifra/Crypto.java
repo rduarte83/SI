@@ -36,33 +36,33 @@ public class Crypto {
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException, FileNotFoundException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException {
         Scanner sc = new Scanner(System.in);
         int opcao = 1;
-            System.out.println("Escolha uma opção:");
-            System.out.println("1 - Gerar chave");
-            System.out.println("2 - Cifrar texto");
-            System.out.println("3 - Decifrar texto");
-            System.out.println("0 - Sair");
-            opcao = sc.nextInt();
-            sc.nextLine();
-            switch (opcao)
-            {
-                case 1:
-                    Biblioteca.gerarChave(args[0], args[1]);
-                    System.out.println(args[0]);
-                    System.out.println("Chave criada com sucesso\n");
-                    break;
-                case 2:
-                    Biblioteca.cifrar(args[0], args[1], args[2], args[3]);
-                    System.out.println(args[0]);
-                    System.out.println("Ficheiro " + args[2] + " cifrado com sucesso");
-                    break;
-                case 3:
-                    Biblioteca.decifrar(args[0], args[1], args[2], args[3]);
-                    System.out.println(args[0]);
-                    System.out.println("Ficheiro " + args[2] + " decifrado com sucesso");
-                    break;
-                default:
-                    System.out.println("Opção inválida");
-            }
+        System.out.println("Escolha uma opção:");
+        System.out.println("1 - Gerar chave");
+        System.out.println("2 - Cifrar texto");
+        System.out.println("3 - Decifrar texto");
+        System.out.println("0 - Sair");
+        opcao = sc.nextInt();
+        sc.nextLine();
+        switch (opcao)
+        {
+            case 1:
+                Biblioteca.gerarChave(args[0], args[1]);
+                System.out.println(args[0]);
+                System.out.println("Chave criada com sucesso\n");
+                break;
+            case 2:
+                Biblioteca.cifrar(args[0], args[1], args[2], args[3]);
+                System.out.println(args[0]);
+                System.out.println("Ficheiro " + args[2] + " cifrado com sucesso");
+                break;
+            case 3:
+                Biblioteca.decifrar(args[0], args[1], args[2], args[3]);
+                System.out.println(args[0]);
+                System.out.println("Ficheiro " + args[2] + " decifrado com sucesso");
+                break;
+            default:
+                System.out.println("Opção inválida");
         }
+    }
     
 }
