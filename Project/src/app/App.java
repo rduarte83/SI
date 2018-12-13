@@ -20,6 +20,8 @@ public class App {
         }else {
             System.out.println("Não está registado.");
             // Registar
+
+            return;
             // System.exit(0);
         }
     }

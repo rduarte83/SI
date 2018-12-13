@@ -42,7 +42,7 @@ public class CartaoCidadaoAux {
         }
         Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
         
-        KeyStore ks = KseyStore.getIntance("PKCS11", prov);
+        KeyStore ks = KeyStore.getIntance("PKCS11", prov);
         ks.load(null, null);
         
         Enumeration<String> als = ks.aliases();

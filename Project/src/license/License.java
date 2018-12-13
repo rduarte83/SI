@@ -1,8 +1,13 @@
 package license;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class License {
@@ -47,7 +52,7 @@ public class License {
 
             // Verifica se o programa foi alterado ou não
             // ( Ver o tamanho do ficheiro e comprar. ( .jar ) )
-            if ( !verificarProgramaAlterado() ) {
+            if ( !verificarProgramaAlterado("path") ) {
                 return false;
             }
             return true;
@@ -67,6 +72,10 @@ public class License {
      */
     Boolean startRegistration(){
         Scanner in = new Scanner(System.in);
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
         // Criar ficheiro .dat
 
 
@@ -77,6 +86,7 @@ public class License {
         // CPU
         // NomeDaApp e Versão
         // Data de validade da linceça
+        // hash -> Tamanho do programa
 
 
         return false;
@@ -105,20 +115,20 @@ public class License {
     }
 
     // Ficheiro existe?
-    private Boolean fileExists(String filePathString){
-        File f = new File(filePathString);
+    private Boolean fileExists(String path){
+        File f = new File(path);
         return f.exists() && !f.isDirectory(); // Se o resultado da função lógica der true ele manda true, se der false ele manda false.
     }
 
     // Verificar Licença.
-    private Boolean verificarLicenca(String filePathString){
+    private Boolean verificarLicenca(String path){
 
 
         return false;
     }
 
     // Verificar se os dados da Maquina Coincidem
-    private Boolean verificarDadosMaquina(String filePathString)
+    private Boolean verificarDadosMaquina(String path)
     {
         // Desencriptar dados vindos do ficheiro e colocar na variavel ficheiro.
         DadosMaquina ficheiro = new DadosMaquina("a", "a", "a");
@@ -130,15 +140,18 @@ public class License {
     }
 
     // Verificar a varacidade do programa.
-    private Boolean verificarProgramaAlterado(){
+    private Boolean verificarProgramaAlterado(String path){
+        File f = new File(path);
+        long size = f.length();
+        long sizeFromFile = getSizeFromFile();
         return false;
     }
 
 
     // Ler Ficheiro - https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
-    private byte[] lerFicheiro(String filePathString) throws IOException {
+    private byte[] lerFicheiro(String path) throws IOException {
 
-        FileInputStream ficheiroLer = new FileInputStream(filePathString);
+        FileInputStream ficheiroLer = new FileInputStream(path);
         byte[] bufferTexto = new byte[(int)ficheiroLer.available()];
         ficheiroLer.read(bufferTexto);
         ficheiroLer.close();
@@ -147,18 +160,45 @@ public class License {
     }
 
     // Encriptar dados
-    private void encriptarDados() {
+    private void encriptarDados(String textoClaro) {
+        // Ir Buscar chave
+        // Encriptar os dados
+        // Escrever no ficheiro.
+
+        try {
+            // alg, ficheiroChave, String ficheiroTextoClaro, String ficheiroTextoCifrado
+            Crypto.cifrar("", "", "", "");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        }
 
     }
 
     // Desencriptar dados
-    private void unEncriptarDados() {
-
+    private void unEncriptarDados(byte[] textoEscuro) {
+        // Ir Buscar chave
+        // Desencriptar Chave
+        // Desencriptar dados com a chave.
     }
 
+    private long getSizeFromFile() {
+
+        return 0;
+    }
 
     private DadosMaquina getSystemInfo(){
-        
+
         return null;
     }
 
