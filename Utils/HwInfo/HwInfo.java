@@ -18,11 +18,6 @@ public class HwInfo {
 		return mb;
 	}
 
-	public static String getT() {
-		String mb = HardwareInfo.getGraphicsCardInfo().getGraphicsCards().get(0).toString();
-		return mb;
-	}
-
 	public static String getGC() {
 		return HardwareInfo.getGraphicsCardInfo().getGraphicsCards().get(0).getName();
 	}
