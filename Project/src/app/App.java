@@ -8,6 +8,7 @@ public class App {
 
         init();
 
+
         System.out.println("Hello World.");
     }
 
@@ -19,6 +20,7 @@ public class App {
             return;
         }else {
             System.out.println("Não está registado.");
+            lic.startRegistration();
             // Registar
 
             return;

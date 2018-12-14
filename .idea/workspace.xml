@@ -2,34 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="152bf2e8-6121-4d9b-b215-32cc60637927" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Project/.idea/Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/.idea/description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/src/license/CartaoBiblioteca.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/src/license/Crypto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/src/license/LicencaDados.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/Server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/project-template.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project/.idea/libraries/org_jhardware_jHardware_0_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Project/src/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/src/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/app/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/license/CartaoBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/license/CartaoBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/license/Crypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/license/Crypto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/src/license/DadosMaquina.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/license/DadosMaquina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/license/LicencaDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/license/LicencaDados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/src/license/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/license/License.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadaoAux.java" beforeDir="false" afterPath="$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadaoAux.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,18 +31,20 @@
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
           <entry key="iml" value="1" />
-          <entry key="java" value="55" />
+          <entry key="java" value="59" />
           <entry key="xml" value="8" />
         </counts>
       </usages-collector>
@@ -65,20 +52,21 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="55" />
+          <entry key="JAVA" value="59" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="11" />
-          <entry key="java" value="4212" />
+          <entry key="java" value="4233" />
           <entry key="xml" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4212" />
+          <entry key="JAVA" value="4233" />
           <entry key="PLAIN_TEXT" value="11" />
           <entry key="XML" value="14" />
         </counts>
@@ -86,21 +74,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadao.java">
+        <entry file="file://$PROJECT_DIR$/Project/src/license/CartaoBiblioteca.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadaoAux.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="37" column="8" lean-forward="true" selection-start-line="36" selection-start-column="90" selection-end-line="37" selection-end-column="8" />
+            <state relative-caret-position="204">
+              <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,10 +88,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Project/src/license/CartaoBiblioteca.java">
+        <entry file="file://$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadaoAux.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+            <state relative-caret-position="173">
+              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="105" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/HwInfo/HwInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="44" column="1" lean-forward="true" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,9 +154,9 @@
         <option value="$PROJECT_DIR$/Project/src/license/License.java" />
         <option value="$PROJECT_DIR$/Project/src/app/main.java" />
         <option value="$PROJECT_DIR$/Project/src/app/Main.java" />
-        <option value="$PROJECT_DIR$/Project/src/app/App.java" />
         <option value="$PROJECT_DIR$/Project/.idea/modules.xml" />
         <option value="$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadaoAux.java" />
+        <option value="$PROJECT_DIR$/Project/src/app/App.java" />
         <option value="$PROJECT_DIR$/Project/src/license/CartaoBiblioteca.java" />
       </list>
     </option>
@@ -177,10 +168,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="233" />
-    <option name="y" value="35" />
+    <option name="x" value="380" />
+    <option name="y" value="29" />
     <option name="width" value="1400" />
-    <option name="height" value="1005" />
+    <option name="height" value="997" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -189,6 +180,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -206,13 +198,6 @@
               <item name="SI" type="462c0819:PsiDirectoryNode" />
               <item name="Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SI" type="462c0819:PsiDirectoryNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SI" type="b2602c69:ProjectViewProjectNode" />
@@ -245,25 +230,31 @@
             </path>
             <path>
               <item name="SI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SI" type="462c0819:PsiDirectoryNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+              <item name="HwInfo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SI" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544732419046" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544735491011" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -287,10 +278,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.App">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="App" type="Application" factoryName="Application" singleton="true" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Project.app.App" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <option name="MAIN_CLASS_NAME" value="app.App" />
+      <module name="Project" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Project" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.App" />
@@ -361,18 +355,19 @@
       <workItem from="1544730618708" duration="14000" />
       <workItem from="1544730674413" duration="88000" />
       <workItem from="1544731405839" duration="164000" />
-      <workItem from="1544731782074" duration="534000" />
+      <workItem from="1544731782074" duration="1747000" />
+      <workItem from="1544736367876" duration="2324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23315000" />
+    <option name="totallyTimeSpent" value="26852000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2889126" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29211086" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -390,7 +385,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32939914" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.32939914" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.32939914" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -511,7 +506,13 @@
     <entry file="file://$PROJECT_DIR$/Project/.idea/modules.xml" />
     <entry file="file://$PROJECT_DIR$/Project/.idea/vcs.xml" />
     <entry file="file://$PROJECT_DIR$/Project/.idea/workspace.xml" />
-    <entry file="file://$PROJECT_DIR$/Project/src/app/App.java" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -519,10 +520,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadaoAux.java">
+    <entry file="file://$PROJECT_DIR$/Project/src/app/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="37" column="8" lean-forward="true" selection-start-line="36" selection-start-column="90" selection-end-line="37" selection-end-column="8" />
+        <state relative-caret-position="187">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/HwInfo/HwInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="44" column="1" lean-forward="true" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -531,8 +542,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Project/src/license/CartaoBiblioteca.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+        <state relative-caret-position="204">
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/cartaocidadao/CartaoCidadaoAux.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="105" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -596,7 +617,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

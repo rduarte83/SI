@@ -23,4 +23,13 @@ class DadosMaquina {
     String getMAC() {
         return MAC;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "BIOS: '"+BIOS+"'," +
+                "CPU: '"+CPU+"'," +
+                "MAC: '"+MAC+"'" +
+                "}";
+    }
 }

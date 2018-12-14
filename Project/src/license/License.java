@@ -1,13 +1,18 @@
 package license;
 
+import utils.Utils;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class License {
@@ -37,8 +42,11 @@ public class License {
     */
     // Caso False GerarDados.
     public Boolean isRegistered(){
+        // Ler Dados do Cartão
+        CartaoBiblioteca.getCartaoInfo();
+
         // Verifica se ficheiro existe.
-        if ( fileExists("nomeapelido.lic") ) {
+        if ( fileExists(LicencaDados.getIdentificacaoCivil()+".lic") ) {
 
             // A licença é valida? ( id-firstlastname.lic )
             if ( !verificarLicenca("nomeapelido.lic")){
@@ -70,26 +78,49 @@ public class License {
         registada e possibilitando iniciar o processo de registo de uma nova
         licen¸ca. Os detalhes sobre este processo encontram-se na subsection 1.4.
      */
-    Boolean startRegistration(){
+    public Boolean startRegistration(){
         Scanner in = new Scanner(System.in);
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        // Criar ficheiro .dat
-
+        // Pedir Email
+        System.out.print("Insira o seu email:");
+        LicencaDados.setEmail(in.nextLine());
 
         // Nome, Email, Chave Publica CC, nº Identificação Civil
-        // Pedir Primeiro e Ultimo Nome
-        // Ir Buscar MAC Address
-        // Motherboard
-        // CPU
+        CartaoBiblioteca.getCartaoInfo();
+
+        // Dados da Maquina
+        LicencaDados.setDadosMaquina(new DadosMaquina(Utils.getMb(), Utils.getCpu(),Utils.getMac()));
+
         // NomeDaApp e Versão
+        LicencaDados.setNomeDaApp(nomeDaApp);
+        LicencaDados.setVersao(versao);
+
         // Data de validade da linceça
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        LicencaDados.setInicioValidadeLicenca(sdf.format(timestamp));
+
         // hash -> Tamanho do programa
+        File file = new File("cliente.jar");
+        long fileLength = file.length();
+        LicencaDados.setTamanhoPrograma(fileLength);
 
 
-        return false;
+        // Criar ficheiro .dat
+        try {
+            String nomeFicheiro = LicencaDados.getIdentificacaoCivil()+".dat";
+            FileOutputStream fos = new FileOutputStream(nomeFicheiro);
+            byte[] output = LicencaDados.stringTo().getBytes();
+            fos.write(output);
+            fos.flush();
+            fos.close();
+
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        // Encriptar Dados
     }
 
     /*
@@ -102,16 +133,18 @@ public class License {
      */
     void showLicenseInfo(){
         // Mostrar os dados da Licença se Houver!
+        // Ler Dados do Cartão
+        CartaoBiblioteca.getCartaoInfo();
 
-        // Senão mostrar que não está registada.
+        // Verifica se ficheiro existe.
+        if ( fileExists(LicencaDados.getIdentificacaoCivil()+".lic") ) {
+            // Decifrar
 
-        if(license){
-            System.out.println("Aplicação não se encontra registada.");
-            startRegistration();
+            // Mostrar informaçao
         }else {
-            System.out.println("Dados da licença");
-            System.out.println("xxx - xxx");
+            System.out.println("Aplicação não se encontra registada.");
         }
+
     }
 
     // Ficheiro existe?
@@ -160,13 +193,14 @@ public class License {
     }
 
     // Encriptar dados
-    private void encriptarDados(String textoClaro) {
+    private void encriptarDados(String textoClaro, String ficheiroChave, String ficheiroClaro) {
         // Ir Buscar chave
         // Encriptar os dados
         // Escrever no ficheiro.
 
         try {
             // alg, ficheiroChave, String ficheiroTextoClaro, String ficheiroTextoCifrado
+            Crypto.gerarChave("", "");
             Crypto.cifrar("", "", "", "");
 
         } catch (IOException e) {

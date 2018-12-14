@@ -22,6 +22,7 @@ class Crypto {
         fo.flush();
     }
 
+    // ALG = Algoritmo de Encriptação AES | DES
     static void cifrar(String alg, String ficheiroChave, String ficheiroTextoClaro, String ficheiroTextoCifrado) throws FileNotFoundException, IOException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException {
         FileInputStream FISTextoClaro = new FileInputStream(ficheiroTextoClaro);
         byte[] buffTextoClaro = new byte[(int)FISTextoClaro.available()];
@@ -43,7 +44,7 @@ class Crypto {
         textoCifrado.close();
     }
 
-    static byte[] decifrar(String alg, String ficheiroChave, String ficheiroTextoCifrado, String ficheiroTextoClaro) throws FileNotFoundException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    static String decifrar(String alg, String ficheiroChave, String ficheiroTextoCifrado) throws  IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         FileInputStream textoCifrado = new FileInputStream(ficheiroTextoCifrado);
         byte[] buffTCifrado = new byte[(int)textoCifrado.available()];
         textoCifrado.read(buffTCifrado);
@@ -52,12 +53,15 @@ class Crypto {
         byte[] buffChave = new byte[(int)chave.available()];
         chave.read(buffChave);
 
+        textoCifrado.close();
+        chave.close();
+
         SecretKey sk = new SecretKeySpec(buffChave, alg);
 
         Cipher c = Cipher.getInstance(alg);
         c.init(Cipher.DECRYPT_MODE, sk);
         byte[] texto = c.doFinal(buffTCifrado);
-
-        return texto;
+        String textoClaro = new String(texto);
+        return textoClaro;
     }
 }
