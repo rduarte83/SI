@@ -1,5 +1,6 @@
 package app;
 
+import license.CartaoBiblioteca;
 import license.License;
 
 public class App {
@@ -14,8 +15,15 @@ public class App {
 
     private static void init(){
         License lic = new License("HelloWorld", "1.0.1");
+        CartaoBiblioteca.assinar("153435623.dat", "assinatura.dat");
 
-        if( lic.isRegistered() )  {
+        /*Simetrico.init();
+        String msg = "Olá João Lindo sou o Rui.";
+        System.out.println("Texto em Claro:"+msg);
+        System.out.println("Encriptado:"+Simetrico.encryptText(msg));
+        System.out.println("Desencriptado:"+Simetrico.decryptText(msg));*/
+
+        /*if( lic.isRegistered() )  {
             System.out.println("Está registado.");
             return;
         }else {
@@ -25,7 +33,7 @@ public class App {
 
             return;
             // System.exit(0);
-        }
+        }*/
     }
 
 }

@@ -117,19 +117,19 @@ class LicencaDados {
      */
 
     public static String stringTo() {
-        return "{" +
-                "chave:'"+chave+"'," +
-                "primeiroNome:'"+primeiroNome+"'," +
-                "ultimoNome:'"+ultimoNome+"'," +
-                "email:'"+email+"'," +
-                "chavePublica:'"+chavePublica+"'," +
-                "identificacaoCivil:'"+identificacaoCivil+"'," +
-                "dadosMaquina:"+dadosMaquina.toString()+"," +
-                "nomeDaApp:'"+nomeDaApp+"'," +
-                "versao:'"+versao+"'," +
-                "inicioValidadeLicenca:'"+inicioValidadeLicenca+"'," +
-                "fimValidadeLicenca:'"+fimValidadeLicenca+"'," +
-                "tamanhoPrograma:'"+tamanhoPrograma+"'" +
+        return "{\n" +
+                "identificacaoCivil:'"+identificacaoCivil+"',\n" +
+                "primeiroNome:'"+primeiroNome+"',\n" +
+                "ultimoNome:'"+ultimoNome+"',\n" +
+                "email:'"+email+"',\n" +
+                "dadosMaquina:"+dadosMaquina.toString()+",\n" +
+                "nomeDaApp:'"+nomeDaApp+"',\n" +
+                "versao:'"+versao+"',\n" +
+                "inicioValidadeLicenca:'"+inicioValidadeLicenca+"',\n" +
+                "fimValidadeLicenca:'"+fimValidadeLicenca+"',\n" +
+                "tamanhoPrograma:'"+tamanhoPrograma+"',\n" +
+                "chave:'"+chave+"',\n" +
+                "chavePublica:'"+chavePublica+"'\n" +
                 "}";
     }
 }

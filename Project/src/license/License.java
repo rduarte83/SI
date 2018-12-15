@@ -2,15 +2,10 @@ package license;
 
 import utils.Utils;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -88,7 +83,7 @@ public class License {
         CartaoBiblioteca.getCartaoInfo();
 
         // Dados da Maquina
-        LicencaDados.setDadosMaquina(new DadosMaquina(Utils.getMb(), Utils.getCpu(),Utils.getMac()));
+        LicencaDados.setDadosMaquina(new DadosMaquina(Utils.getMB(), Utils.getCPU(),Utils.getNW()));
 
         // NomeDaApp e Versão
         LicencaDados.setNomeDaApp(nomeDaApp);
@@ -197,25 +192,17 @@ public class License {
         // Ir Buscar chave
         // Encriptar os dados
         // Escrever no ficheiro.
-
-        try {
-            // alg, ficheiroChave, String ficheiroTextoClaro, String ficheiroTextoCifrado
-            Crypto.gerarChave("", "");
-            Crypto.cifrar("", "", "", "");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//            // alg, ficheiroChave, String ficheiroTextoClaro, String ficheiroTextoCifrado
+//            //Crypto.gerarChave("", "");
+//            //Crypto.cifrar("", "", "", "");
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
