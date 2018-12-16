@@ -1,9 +1,12 @@
 package utils;
 
+
 import org.jutils.jhardware.HardwareInfo;
 
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Enumeration;
 
 public class Utils {
@@ -72,6 +75,18 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static String encriptarB64(String msg) {
+        String base64encodedString = Base64.getEncoder().encodeToString(msg.getBytes(StandardCharsets.UTF_8));
+        return base64encodedString;
+    }
+
+    public static byte[] desencriptarB64(String msg) {
+        // Decode
+        byte[] base64decodedBytes = Base64.getDecoder().decode(msg);
+        return base64decodedBytes;
+        //return new String(base64decodedBytes, StandardCharsets.UTF_8);
     }
 
 

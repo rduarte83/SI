@@ -1,13 +1,17 @@
 package license;
 
+import utils.Assimetrico;
+import utils.Simetrico;
 import utils.Utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
 import java.util.Scanner;
 
 public class License {
@@ -44,7 +48,7 @@ public class License {
         if ( fileExists(LicencaDados.getIdentificacaoCivil()+".lic") ) {
 
             // A licença é valida? ( id-firstlastname.lic )
-            if ( !verificarLicenca("nomeapelido.lic")){
+            if ( !verificarLicenca(LicencaDados.getIdentificacaoCivil()+".lic")){
                 return false;
             }
 
@@ -89,10 +93,10 @@ public class License {
         LicencaDados.setNomeDaApp(nomeDaApp);
         LicencaDados.setVersao(versao);
 
-        // Data de validade da linceça
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        LicencaDados.setInicioValidadeLicenca(sdf.format(timestamp));
+//        // Data de validade da linceça
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Timestamp timestamp = new Timestamp(System.currentTimeMillis());System.currentTimeMillis()+1year
+//        LicencaDados.setInicioValidadeLicenca(sdf.format(timestamp));
 
         // hash -> Tamanho do programa
         File file = new File("cliente.jar");
@@ -104,10 +108,25 @@ public class License {
         try {
             String nomeFicheiro = LicencaDados.getIdentificacaoCivil()+".dat";
             FileOutputStream fos = new FileOutputStream(nomeFicheiro);
-            byte[] output = LicencaDados.stringTo().getBytes();
+            System.out.println(LicencaDados.stringTo());
+            byte[] output = Utils.encriptarB64(LicencaDados.stringTo()).getBytes(StandardCharsets.UTF_8);
             fos.write(output);
             fos.flush();
             fos.close();
+
+            CartaoBiblioteca.assinar(nomeFicheiro, "assinatura.dat");
+
+            String finalEnc = encriptarDadosSim(nomeFicheiro);
+            finalEnc += System.getProperty("line.separator") ;
+            // Encriptar Asym Chave
+            finalEnc += encriptarChaveAsym();
+
+            // Juntar Tudo!!
+            FileOutputStream fosFinal = new FileOutputStream(nomeFicheiro);
+            byte[] outputFinal = Utils.encriptarB64(finalEnc).getBytes();
+            fosFinal.write(outputFinal);
+            fosFinal.flush();
+            fosFinal.close();
 
             return true;
         } catch (IOException e) {
@@ -188,29 +207,49 @@ public class License {
     }
 
     // Encriptar dados
-    private void encriptarDados(String textoClaro, String ficheiroChave, String ficheiroClaro) {
-        // Ir Buscar chave
-        // Encriptar os dados
-        // Escrever no ficheiro.
-//
-//        try {
-//            // alg, ficheiroChave, String ficheiroTextoClaro, String ficheiroTextoCifrado
-//            //Crypto.gerarChave("", "");
-//            //Crypto.cifrar("", "", "", "");
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        }
+    private String encriptarDadosSim(String fTextoClaro) {
+        try {
+            FileInputStream fis = new FileInputStream(fTextoClaro);;
+            byte[] fbytes = new byte[(int) fis.available()];
+            fis.read(fbytes);
+            fis.close();
 
+            Simetrico s = new Simetrico();
+            String encrypted = s.encrypt(new String(fbytes, StandardCharsets.UTF_8));
+            return encrypted;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    // Desencriptar dados
-    private void unEncriptarDados(byte[] textoEscuro) {
-        // Ir Buscar chave
-        // Desencriptar Chave
-        // Desencriptar dados com a chave.
+    private String encriptarChaveAsym() {
+        Assimetrico ac = null;
+        try {
+
+            ac = new Assimetrico(1024);
+            PrivateKey privateKey = ac.getPrivate("KeyPair/privateKey");
+
+            String encrypted_msg = ac.encryptText(Simetrico.SYM_KEY, privateKey);
+            return encrypted_msg;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private long getSizeFromFile() {
@@ -221,9 +260,5 @@ public class License {
     private DadosMaquina getSystemInfo(){
 
         return null;
-    }
-
-    void getLicenseFile(){
-
     }
 }

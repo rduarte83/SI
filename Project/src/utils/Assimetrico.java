@@ -1,7 +1,6 @@
 package utils;
 
-import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -83,12 +82,12 @@ public class Assimetrico {
 
     public String encryptText(String msg, PrivateKey key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException{
         this.cipher.init(Cipher.ENCRYPT_MODE, key);
-        return Base64.encode(cipher.doFinal(msg.getBytes("UTF-8")));
+        return Utils.encriptarB64( new String (cipher.doFinal(msg.getBytes("UTF-8")),"UTF-8" ));
     }
 
-    public String decryptText(String msg, PublicKey key) throws InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, Base64DecodingException {
+    public String decryptText(String msg, PublicKey key) throws InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException {
         this.cipher.init(Cipher.DECRYPT_MODE, key);
-        return new String(cipher.doFinal(Base64.decode(msg)), "UTF-8");
+        return new String(cipher.doFinal(Utils.desencriptarB64(msg)), "UTF-8");
     }
 
 
@@ -100,7 +99,7 @@ public class Assimetrico {
         return fbytes;
     }
 
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
 
         Assimetrico ac;
         try {
@@ -128,6 +127,6 @@ public class Assimetrico {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-    }
+    }*/
 }
 
