@@ -3,7 +3,6 @@ package license;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import pt.gov.cartaodecidadao.*;
 import utils.Utils;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
@@ -12,28 +11,62 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
-
 public class CartaoBiblioteca {
+    static {
+        try {
+            System.loadLibrary("pteidlibj");
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("Native code library failed to load. \n" + e);
+            System.exit(1);
+        }
+    }
 
     static PTEID_ReaderContext context;
     final static String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
 
+    public static boolean isCardReaderPresent() {
+        PTEID_ReaderSet readerSet;
+        try {
+            readerSet = PTEID_ReaderSet.instance();
+            for (int i = 0; i < readerSet.readerCount(); i++) {
+                context = readerSet.getReaderByNum(i);
+                return true;
+            }
+        } catch (PTEID_Exception e) {
+            e.printStackTrace();
+        } return false;
+    }
+
+    public static boolean isCardPresent(){
+        try {
+            PTEID_EIDCard card;
+            if (context.isCardPresent()) {
+                card = context.getEIDCard();
+                return true;
+            }
+        } catch (PTEID_Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public static String getCartaoInfo(){
+
         Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
         try {
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);
 
-            Certificate cert = ks.getCertificate(alias);
-            PublicKey key = cert.getPublicKey();
-            byte[] buffCert = cert.getEncoded();
-
-            System.loadLibrary("pteidlibj");
             if(isCardPresent()){
                 PTEID_EIDCard card = context.getEIDCard();
                 PTEID_EId eid = card.getID();
                 PTEID_PublicKey pk = eid.getCardAuthKeyObj();
+
+                Certificate cert = ks.getCertificate(alias);
+                PublicKey key = cert.getPublicKey();
+                byte[] buffCert = cert.getEncoded();
+
+                System.loadLibrary("pteidlibj");
 
                 // Pôr dados na nossa classe.
                 LicencaDados.setPrimeiroNome(eid.getGivenName());
@@ -61,26 +94,6 @@ public class CartaoBiblioteca {
 
 
         return "";
-    }
-
-    static boolean isCardPresent(){
-        try {
-            PTEID_EIDCard card;
-            PTEID_ReaderSet readerSet;
-            readerSet = PTEID_ReaderSet.instance();
-            for (int i = 0; i < readerSet.readerCount(); i++) {
-                context = readerSet.getReaderByNum(i);
-                if (context.isCardPresent()) {
-                    card = context.getEIDCard();
-                    return true;
-                }
-            }
-
-            return false;
-        }catch (PTEID_Exception e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 
     public static void assinar(String ficheiroTextoClaro, String pathFicheiroAssinado) {
