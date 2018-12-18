@@ -1,6 +1,5 @@
 package license;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.Assimetrico;
 import utils.Simetrico;
@@ -100,41 +99,23 @@ public class License {
         LicencaDados.setNomeDaApp(nomeDaApp);
         LicencaDados.setVersao(versao);
 
-//        // Data de validade da linceça
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        Timestamp timestamp = new Timestamp(System.currentTimeMillis());System.currentTimeMillis()+1year
-//        LicencaDados.setInicioValidadeLicenca(sdf.format(timestamp));
-
         // hash -> Tamanho do programa
         File file = new File("cliente.jar");
         long fileLength = file.length();
         LicencaDados.setTamanhoPrograma(fileLength);
 
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            LicencaDadosJson ldj = new LicencaDadosJson();
-            ldj.setDadosClass();
-            String teste = mapper.writeValueAsString(ldj);
-            System.out.println(teste);
-
-            LicencaDadosJson teste2Class = mapper.readValue(teste, LicencaDadosJson.class);
-            System.out.println("Teste1-"+teste2Class.getDadosMaquina().getCpu());
-            System.out.println("Teste2-"+LicencaDados.getDadosMaquina().getCpu());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
         // Criar ficheiro .dat
         try {
-
+            // Parse to Json the LicençaDados class.
+            ObjectMapper mapper = new ObjectMapper();
+            LicencaDadosJson ldj = new LicencaDadosJson();
+            ldj.setDadosClass();
+            String jsonToEncript = mapper.writeValueAsString(ldj);
+            // Nome do Ficheiro Criar...
             String nomeFicheiro = LicencaDados.getIdentificacaoCivil()+".dat";
-
             FileOutputStream fos = new FileOutputStream(nomeFicheiro);
-            //System.out.println(LicencaDados.stringTo());
-            byte[] output = Utils.encriptarB64(LicencaDados.stringTo()).getBytes(StandardCharsets.UTF_8);
+            byte[] output = Utils.encriptarB64(jsonToEncript).getBytes(StandardCharsets.UTF_8);
             fos.write(output);
             fos.flush();
             fos.close();
