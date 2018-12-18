@@ -114,6 +114,19 @@ class LicencaDadosJson{
         this.setFimValidadeLicenca(LicencaDados.getFimValidadeLicenca());
     }
 
+    public void getDadosClass(){
+        LicencaDados.setPrimeiroNome(this.getPrimeiroNome());
+        LicencaDados.setUltimoNome(this.getUltimoNome());
+        LicencaDados.setEmail(this.getEmail());
+        LicencaDados.setIdentificacaoCivil(this.getIdentificacaoCivil());
+        LicencaDados.setDadosMaquina(this.getDadosMaquina());
+        LicencaDados.setNomeDaApp(this.getNomeDaApp());
+        LicencaDados.setVersao(this.getVersao());
+        LicencaDados.setTamanhoPrograma(this.getTamanhoPrograma());
+        LicencaDados.setInicioValidadeLicenca(this.getInicioValidadeLicenca());
+        LicencaDados.setFimValidadeLicenca(this.getFimValidadeLicenca());
+    }
+
 }
 
 class LicencaDados {
