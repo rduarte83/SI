@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6378e888-897c-4c6f-8492-19f13f93cf50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Project/.idea/artifacts/Project_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Project/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Project/src/keys/privateKey" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Project/src/keys/publicKey" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dat/153435623.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/153435623.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/src/app/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/license/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/src/license/License.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Assimetrico.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/src/utils/Assimetrico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Simetrico.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/src/utils/Simetrico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/src/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/License/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/License/License.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Assimetrico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Assimetrico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/Project.iml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -208,7 +192,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545155882380" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545156130285" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Project/lib/jackson-databind-2.9.7.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -266,7 +250,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
