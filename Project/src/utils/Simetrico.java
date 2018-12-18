@@ -21,7 +21,7 @@ public class Simetrico {
 
     public Simetrico() {
         try {
-            this.secretKey = new SecretKeySpec(SYM_KEY.getBytes(), "AES");
+            this.secretKey = new SecretKeySpec(SYM_KEY.getBytes(StandardCharsets.UTF_8), "AES");
             this.encoder = Base64.getUrlEncoder();
             this.decoder = Base64.getUrlDecoder();
         } catch (Exception ex) {

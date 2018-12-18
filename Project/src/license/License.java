@@ -80,6 +80,7 @@ public class License {
      */
     public Boolean startRegistration(){
         Scanner in = new Scanner(System.in);
+
         // Pedir Email
         System.out.print("Insira o seu email:");
         LicencaDados.setEmail(in.nextLine());
@@ -88,11 +89,7 @@ public class License {
         CartaoBiblioteca.getCartaoInfo();
 
         // Dados da MaquinaString BIOS, String CPU, String MAC, String GC
-        DadosMaquina dadosMaquina = new DadosMaquina(Utils.getMB(), Utils.getCPU(), Utils.getNW(), Utils.getGC());
-        dadosMaquina.setBios(Utils.getMB());
-        dadosMaquina.setCpu(Utils.getCPU());
-        dadosMaquina.setMac(Utils.getNW());
-        dadosMaquina.setGc(Utils.getGC());
+        DadosMaquina dadosMaquina = Utils.getSystemInfo();
         LicencaDados.setDadosMaquina(dadosMaquina);
 
         // NomeDaApp e Versão
@@ -123,7 +120,8 @@ public class License {
             CartaoBiblioteca.assinar(nomeFicheiro, "assinatura.dat");
 
             String finalEnc = encriptarDadosSim(nomeFicheiro);
-            finalEnc += System.getProperty("line.separator") ;
+//            finalEnc += System.getProperty("line.separator");
+            finalEnc += "\n";
             // Encriptar Asym Chave
             finalEnc += encriptarChaveAsym();
 
@@ -185,7 +183,7 @@ public class License {
     {
         // Desencriptar dados vindos do ficheiro e colocar na variavel ficheiro.
         DadosMaquina ficheiro = new DadosMaquina("a","a", "a", "a");
-        DadosMaquina atual = getSystemInfo();
+        DadosMaquina atual = Utils.getSystemInfo();
 
         return ficheiro.getBios().equals(atual.getBios()) &&
                 ficheiro.getCpu().equals(atual.getCpu()) &&
@@ -203,12 +201,10 @@ public class License {
 
     // Ler Ficheiro - https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
     private byte[] lerFicheiro(String path) throws IOException {
-
         FileInputStream ficheiroLer = new FileInputStream(path);
         byte[] bufferTexto = new byte[(int)ficheiroLer.available()];
         ficheiroLer.read(bufferTexto);
         ficheiroLer.close();
-
         return bufferTexto;
     }
 
@@ -235,9 +231,9 @@ public class License {
         Assimetrico ac = null;
         try {
 
-            ac = new Assimetrico(1024);
-            PrivateKey privateKey = ac.getPrivate("KeyPair/privateKey");
-
+            ac = new Assimetrico(0);
+            //InputStream in = getClass().getResourceAsStream("/keys/privateKey");
+            PrivateKey privateKey = Utils.readFileInside("/keys/privateKey");
             String encrypted_msg = ac.encryptText(Simetrico.SYM_KEY, privateKey);
             return encrypted_msg;
         } catch (NoSuchAlgorithmException e) {
@@ -261,10 +257,5 @@ public class License {
     private long getSizeFromFile() {
 
         return 0;
-    }
-
-    private DadosMaquina getSystemInfo(){
-
-        return null;
     }
 }

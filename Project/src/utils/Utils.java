@@ -1,11 +1,19 @@
 package utils;
 
 
+import license.DadosMaquina;
 import org.jutils.jhardware.HardwareInfo;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 import java.util.Enumeration;
 
@@ -87,6 +95,29 @@ public class Utils {
         byte[] base64decodedBytes = Base64.getDecoder().decode(msg);
         return base64decodedBytes;
         //return new String(base64decodedBytes, StandardCharsets.UTF_8);
+    }
+
+    public static PrivateKey readFileInside(String path)  {
+        try {
+            InputStream in = Utils.class.getResourceAsStream("/keys/"+path);
+            byte[] fbytes = new byte[(int) in.available()];
+            in.read(fbytes);
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(fbytes);
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            return kf.generatePrivate(spec);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static DadosMaquina getSystemInfo(){
+        return new DadosMaquina(Utils.getMB(), Utils.getCPU(), Utils.getNW(), Utils.getGC());
     }
 
 

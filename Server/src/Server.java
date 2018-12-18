@@ -1,4 +1,6 @@
+import License.License;
 
+import java.nio.charset.StandardCharsets;
 
 public class Server {
 
@@ -8,6 +10,16 @@ public class Server {
     // Desencriptar
     // Gerar .lic
     // Encriptar
+    public static void main ( String[] args ){
+        //License.gerarChavesAsimetricas();
+        //License.decifrar("153435623");
+
+        License.PKS.getBytes(StandardCharsets.UTF_8);
+
+
+        //byte[] bPK = License.PKS.getBytes(StandardCharsets.UTF_8);
+
+    }
 
 
 

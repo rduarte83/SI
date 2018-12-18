@@ -89,14 +89,6 @@ public class Assimetrico {
     }
 
 
-    public byte[] getFileInBytes(File f) throws IOException{
-        FileInputStream fis = new FileInputStream(f);
-        byte[] fbytes = new byte[(int) f.length()];
-        fis.read(fbytes);
-        fis.close();
-        return fbytes;
-    }
-
     /*public static void main(String[] args) throws Exception {
 
         Utils.Assimetrico ac;

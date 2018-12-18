@@ -5,6 +5,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -80,12 +81,12 @@ public class Assimetrico {
 
     public String encryptText(String msg, PrivateKey key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException{
         this.cipher.init(Cipher.ENCRYPT_MODE, key);
-        return Utils.encriptarB64( new String (cipher.doFinal(msg.getBytes("UTF-8")),"UTF-8" ));
+        return Utils.encriptarB64( new String (cipher.doFinal(msg.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
     }
 
     public String decryptText(String msg, PublicKey key) throws InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException {
         this.cipher.init(Cipher.DECRYPT_MODE, key);
-        return new String(cipher.doFinal(Utils.desencriptarB64(msg)), "UTF-8");
+        return new String(cipher.doFinal(Utils.desencriptarB64(msg)), StandardCharsets.UTF_8);
     }
 
 
