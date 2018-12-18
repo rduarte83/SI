@@ -1,5 +1,7 @@
 package license;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.Assimetrico;
 import utils.Simetrico;
 import utils.Utils;
@@ -86,8 +88,13 @@ public class License {
         // Nome, Email, Chave Publica CC, nº Identificação Civil
         CartaoBiblioteca.getCartaoInfo();
 
-        // Dados da Maquina
-        LicencaDados.setDadosMaquina(new DadosMaquina(Utils.getMB(), Utils.getCPU(),Utils.getNW()));
+        // Dados da MaquinaString BIOS, String CPU, String MAC, String GC
+        DadosMaquina dadosMaquina = new DadosMaquina(Utils.getMB(), Utils.getCPU(), Utils.getNW(), Utils.getGC());
+        dadosMaquina.setBios(Utils.getMB());
+        dadosMaquina.setCpu(Utils.getCPU());
+        dadosMaquina.setMac(Utils.getNW());
+        dadosMaquina.setGc(Utils.getGC());
+        LicencaDados.setDadosMaquina(dadosMaquina);
 
         // NomeDaApp e Versão
         LicencaDados.setNomeDaApp(nomeDaApp);
@@ -103,12 +110,30 @@ public class License {
         long fileLength = file.length();
         LicencaDados.setTamanhoPrograma(fileLength);
 
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            LicencaDadosJson ldj = new LicencaDadosJson();
+            ldj.setDadosClass();
+            String teste = mapper.writeValueAsString(ldj);
+            System.out.println(teste);
+
+            LicencaDadosJson teste2Class = mapper.readValue(teste, LicencaDadosJson.class);
+            System.out.println("Teste1-"+teste2Class.getDadosMaquina().getCpu());
+            System.out.println("Teste2-"+LicencaDados.getDadosMaquina().getCpu());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         // Criar ficheiro .dat
         try {
+
             String nomeFicheiro = LicencaDados.getIdentificacaoCivil()+".dat";
+
             FileOutputStream fos = new FileOutputStream(nomeFicheiro);
-            System.out.println(LicencaDados.stringTo());
+            //System.out.println(LicencaDados.stringTo());
             byte[] output = Utils.encriptarB64(LicencaDados.stringTo()).getBytes(StandardCharsets.UTF_8);
             fos.write(output);
             fos.flush();
@@ -178,12 +203,12 @@ public class License {
     private Boolean verificarDadosMaquina(String path)
     {
         // Desencriptar dados vindos do ficheiro e colocar na variavel ficheiro.
-        DadosMaquina ficheiro = new DadosMaquina("a", "a", "a");
+        DadosMaquina ficheiro = new DadosMaquina("a","a", "a", "a");
         DadosMaquina atual = getSystemInfo();
 
-        return ficheiro.getBIOS().equals(atual.getBIOS()) &&
-                ficheiro.getCPU().equals(atual.getCPU()) &&
-                ficheiro.getMAC().equals(atual.getMAC());
+        return ficheiro.getBios().equals(atual.getBios()) &&
+                ficheiro.getCpu().equals(atual.getCpu()) &&
+                ficheiro.getMac().equals(atual.getMac()) && ficheiro.getGc().equals(atual.getGc());
     }
 
     // Verificar a varacidade do programa.

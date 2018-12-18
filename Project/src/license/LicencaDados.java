@@ -1,27 +1,135 @@
 package license;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.security.PublicKey;
+
+
+class LicencaDadosJson{
+
+    private String primeiroNome;
+    private String ultimoNome;
+    private String email;
+    private String identificacaoCivil;
+    @JsonDeserialize
+    @JsonSerialize
+    private DadosMaquina dadosMaquina;
+    private String nomeDaApp;
+    private String versao;
+    private long tamanhoPrograma;
+    private String inicioValidadeLicenca;
+    private String fimValidadeLicenca;
+
+    public DadosMaquina getDadosMaquina() {
+        return dadosMaquina;
+    }
+
+    public void setDadosMaquina(DadosMaquina dadosMaquina) {
+        this.dadosMaquina = dadosMaquina;
+    }
+
+    public String getPrimeiroNome() {
+        return primeiroNome;
+    }
+
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
+    }
+
+    public String getUltimoNome() {
+        return ultimoNome;
+    }
+
+    public void setUltimoNome(String ultimoNome) {
+        this.ultimoNome = ultimoNome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getIdentificacaoCivil() {
+        return identificacaoCivil;
+    }
+
+    public void setIdentificacaoCivil(String identificacaoCivil) {
+        this.identificacaoCivil = identificacaoCivil;
+    }
+
+    public String getNomeDaApp() {
+        return nomeDaApp;
+    }
+
+    public void setNomeDaApp(String nomeDaApp) {
+        this.nomeDaApp = nomeDaApp;
+    }
+
+    public String getVersao() {
+        return versao;
+    }
+
+    public void setVersao(String versao) {
+        this.versao = versao;
+    }
+
+    public long getTamanhoPrograma() {
+        return tamanhoPrograma;
+    }
+
+    public void setTamanhoPrograma(long tamanhoPrograma) {
+        this.tamanhoPrograma = tamanhoPrograma;
+    }
+
+    public String getInicioValidadeLicenca() {
+        return inicioValidadeLicenca;
+    }
+
+    public void setInicioValidadeLicenca(String inicioValidadeLicenca) {
+        this.inicioValidadeLicenca = inicioValidadeLicenca;
+    }
+
+    public String getFimValidadeLicenca() {
+        return fimValidadeLicenca;
+    }
+
+    public void setFimValidadeLicenca(String fimValidadeLicenca) {
+        this.fimValidadeLicenca = fimValidadeLicenca;
+    }
+
+    public void setDadosClass(){
+        this.setPrimeiroNome(LicencaDados.getPrimeiroNome());
+        this.setUltimoNome(LicencaDados.getUltimoNome());
+        this.setEmail(LicencaDados.getEmail());
+        this.setIdentificacaoCivil(LicencaDados.getIdentificacaoCivil());
+        this.setDadosMaquina(LicencaDados.getDadosMaquina());
+        this.setNomeDaApp(LicencaDados.getNomeDaApp());
+        this.setVersao(LicencaDados.getVersao());
+        this.setTamanhoPrograma(LicencaDados.getTamanhoPrograma());
+        this.setInicioValidadeLicenca(LicencaDados.getInicioValidadeLicenca());
+        this.setFimValidadeLicenca(LicencaDados.getFimValidadeLicenca());
+    }
+
+}
+
 class LicencaDados {
 
-    private static String chave;
     private static String primeiroNome;
     private static String ultimoNome;
     private static String email;
-    private static String chavePublica;
     private static String identificacaoCivil;
+    private static PublicKey chavePublica;
     private static DadosMaquina dadosMaquina;
     private static String nomeDaApp;
     private static String versao;
+    private static long tamanhoPrograma;
     private static String inicioValidadeLicenca;
     private static String fimValidadeLicenca;
-    private static long tamanhoPrograma;
 
-    public static String getChave() {
-        return chave;
-    }
-
-    public static void setChave(String chave) {
-        LicencaDados.chave = chave;
-    }
 
     public static String getPrimeiroNome() {
         return primeiroNome;
@@ -47,11 +155,11 @@ class LicencaDados {
         LicencaDados.email = email;
     }
 
-    public static String getChavePublica() {
+    public static PublicKey getChavePublica() {
         return chavePublica;
     }
 
-    public static void setChavePublica(String chavePublica) {
+    public static void setChavePublica(PublicKey chavePublica) {
         LicencaDados.chavePublica = chavePublica;
     }
 
@@ -111,25 +219,19 @@ class LicencaDados {
         LicencaDados.tamanhoPrograma = tamanhoPrograma;
     }
 
-    /**
-
-     * @return
-     */
-
     public static String stringTo() {
         return "{\n" +
                 "identificacaoCivil:'"+identificacaoCivil+"',\n" +
                 "primeiroNome:'"+primeiroNome+"',\n" +
                 "ultimoNome:'"+ultimoNome+"',\n" +
                 "email:'"+email+"',\n" +
-                "dadosMaquina:"+dadosMaquina.toString()+",\n" +
+                //"dadosMaquina:"+dadosMaquina.toString()+",\n" +
                 "nomeDaApp:'"+nomeDaApp+"',\n" +
                 "versao:'"+versao+"',\n" +
                 "inicioValidadeLicenca:'"+inicioValidadeLicenca+"',\n" +
                 "fimValidadeLicenca:'"+fimValidadeLicenca+"',\n" +
                 "tamanhoPrograma:'"+tamanhoPrograma+"',\n" +
-                "chave:'"+chave+"',\n" +
-                "chavePublica:'"+chavePublica+"'\n" +
+                "chavePublica:'"+chavePublica.toString()+"'\n" +
                 "}";
     }
 }

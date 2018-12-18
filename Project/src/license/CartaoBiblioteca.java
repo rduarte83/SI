@@ -2,76 +2,60 @@ package license;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import pt.gov.cartaodecidadao.*;
-import pteidlib.PTEID_RSAPublicKey;
-import pteidlib.PteidException;
 import utils.Utils;
 
 import java.io.*;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.RSAPublicKeySpec;
 
 
 public class CartaoBiblioteca {
 
     static PTEID_ReaderContext context;
+    final static String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
 
 
     public static String getCartaoInfo(){
-
-        String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
-        Provider[] provs = Security.getProviders();
         Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
         try {
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
-
             ks.load(null, null);
 
-            /*Enumeration<String> als = ks.aliases();
-            while (als.hasMoreElements()) {
-                System.out.println(als.nextElement());
-            }*/
-        } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
-            e.printStackTrace();
-        }
+            Certificate cert = ks.getCertificate(alias);
+            PublicKey key = cert.getPublicKey();
+            byte[] buffCert = cert.getEncoded();
 
-        try {
             System.loadLibrary("pteidlibj");
+            if(isCardPresent()){
+                PTEID_EIDCard card = context.getEIDCard();
+                PTEID_EId eid = card.getID();
+                PTEID_PublicKey pk = eid.getCardAuthKeyObj();
+
+                // Pôr dados na nossa classe.
+                LicencaDados.setPrimeiroNome(eid.getGivenName());
+                LicencaDados.setUltimoNome(eid.getSurname());
+                LicencaDados.setIdentificacaoCivil(eid.getCivilianIdNumber());
+                LicencaDados.setChavePublica(key);
+            }
+        } catch (PTEID_Exception e) {
+            e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         } catch (UnsatisfiedLinkError t) {
             if (t.getMessage().contains("already loaded")) {
                 System.out.println("Biblioteca do Cartão de Cidadão bloqueada.");
             } else {
                 System.out.println("Middleware do Cartão de Cidadão não está instalado.");
             }
-        }
-
-        try {
-            if(isCardPresent()){
-                PTEID_EIDCard card = context.getEIDCard();
-                PTEID_EId eid = card.getID();
-                PTEID_PublicKey pk = eid.getCardAuthKeyObj();
-
-                //card.getRootCAPubKey();
-                System.out.println("getCardAuthKeyExponent-"+pk.getCardAuthKeyExponent());
-                System.out.println("getCardAuthKeyModulus-"+pk.getCardAuthKeyModulus());
-                // Pôr dados na nossa classe.
-                LicencaDados.setPrimeiroNome(eid.getGivenName());
-                LicencaDados.setUltimoNome(eid.getSurname());
-                LicencaDados.setIdentificacaoCivil(eid.getCivilianIdNumber());
-                GetCardAuthenticationKey();
-                //LicencaDados.setChavePublica();
-
-                //System.out.println("Dados: " + LicencaDados.stringTo());
-            }
-
-
-        } catch (PTEID_Exception e) {
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -247,7 +231,7 @@ public class CartaoBiblioteca {
 
 
 
-    public static PTEID_RSAPublicKey GetCardAuthenticationKey(){
+   /* public static PTEID_RSAPublicKey GetCardAuthenticationKey(){
         PTEID_RSAPublicKey key = null;
 
         if (context != null) {
@@ -262,18 +246,31 @@ public class CartaoBiblioteca {
                 Long longVarExp = cardKey.getCardAuthKeyExponent().Size();
 
                 // Convert Long to String.
-                String stringVarMod =longVarMod.toString();
-                String stringVarExp =longVarExp.toString();
+                String stringVarMod = longVarMod.toString();
+                String stringVarExp = longVarExp.toString();
+
+                System.out.println("stringVarMod:"+stringVarMod);
+                System.out.println("stringVarExp:"+stringVarExp);
+                System.out.println(":------------:");
 
                 // Convert to BigInteger. The BigInteger(byte[] val) expects a binary representation of
                 // the number, whereas the BigInteger(string val) expects a decimal representation.
                 BigInteger bigIntVarMod = new BigInteger( stringVarMod );
                 BigInteger bigIntVarExp = new BigInteger( stringVarExp );
 
+                BigInteger bigIntMod = new BigInteger(stringVarMod, 16);
+                BigInteger bigIntExp = new BigInteger(stringVarExp, 16);
+
+                System.out.println("bigIntVarMod:"+bigIntVarMod);
+                System.out.println("bigIntVarExp:"+bigIntVarExp);
+                System.out.println(":------------:");
+                System.out.println("bigIntMod:"+bigIntMod);
+                System.out.println("bigIntExp:"+bigIntExp);
+
                 // See if the conversion worked. But the output from this step is not
                 // anything like the original value I put into longVar
 
-                RSAPublicKeySpec spec = new RSAPublicKeySpec(bigIntVarMod, bigIntVarExp);
+                RSAPublicKeySpec spec = new RSAPublicKeySpec(bigIntMod, bigIntExp);
                 KeyFactory factory = KeyFactory.getInstance("RSA");
                 PublicKey pub = factory.generatePublic(spec);
 
@@ -299,7 +296,7 @@ public class CartaoBiblioteca {
         }
 
         return key;
-    }
+    }*/
 
 
 //    public static PteidRSAPublicKey GetCVCRoot(){
