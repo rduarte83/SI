@@ -13,8 +13,6 @@ import java.security.NoSuchAlgorithmException;
 public class License {
     public final static String _DIR_DAT = "Dat/";
 
-    public final static String PKS = "\u0001\u0001\u0001\u0005 \u0003�� 0��\u0002�� ��\u0003��\u0004���\u000B�Ȇ�2�0Ih\u0001B��?�I\u000F��u�C*ޏTy�\u0006��J\fɘ�?�Z\u0017�s�������\u001B��\u0003u�����%�bV�%��0D���\u00062���\t���\u0002�z��\u0002�%�QX��FP`�e+\u001Af� ~���]6,x>��\u0013��\u0002\u0003\u0001 \u0001";
-
     // Decifra
     public static void decifrar(String filePath) {
         // Recebe .dat
