@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
@@ -97,7 +98,7 @@ public class Utils {
         //return new String(base64decodedBytes, StandardCharsets.UTF_8);
     }
 
-    public static PrivateKey readFileInside(String path)  {
+    public static PrivateKey readFilePriv(String path)  {
         try {
             InputStream in = Utils.class.getResourceAsStream("/keys/"+path);
             byte[] fbytes = new byte[(int) in.available()];
@@ -115,6 +116,26 @@ public class Utils {
 
         return null;
     }
+
+    public static PublicKey readFilePub(String path)  {
+        try {
+            InputStream in = Utils.class.getResourceAsStream("/keys/"+path);
+            byte[] fbytes = new byte[(int) in.available()];
+            in.read(fbytes);
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(fbytes);
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            return kf.generatePublic(spec);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     public static DadosMaquina getSystemInfo(){
         return new DadosMaquina(Utils.getMB(), Utils.getCPU(), Utils.getNW(), Utils.getGC());

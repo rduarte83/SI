@@ -1,7 +1,5 @@
 import License.License;
 
-import java.nio.charset.StandardCharsets;
-
 public class Server {
 
     // Ter Pasta Lic e pasta Dat
@@ -14,11 +12,11 @@ public class Server {
         //License.gerarChavesAsimetricas();
         //License.decifrar("153435623");
 
-        License.PKS.getBytes(StandardCharsets.UTF_8);
+        //License.PKS.getBytes(StandardCharsets.UTF_8);
 
 
         //byte[] bPK = License.PKS.getBytes(StandardCharsets.UTF_8);
-
+        License.decifrar("153435623");
     }
 
 

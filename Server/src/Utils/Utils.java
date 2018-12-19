@@ -1,16 +1,14 @@
-package Utils;
+package utils;
 
 import java.io.*;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
-import java.util.Enumeration;
 
 public class Utils {
 
@@ -53,7 +51,7 @@ public class Utils {
         return linhas;
     }
 
-    public static PrivateKey readFileInside(String path)  {
+    public static PrivateKey readFilePriv(String path)  {
         try {
             InputStream in = Utils.class.getResourceAsStream("/keys/"+path);
             byte[] fbytes = new byte[(int) in.available()];
@@ -61,6 +59,25 @@ public class Utils {
             PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(fbytes);
             KeyFactory kf = KeyFactory.getInstance("RSA");
             return kf.generatePrivate(spec);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static PublicKey readFilePub(String path)  {
+        try {
+            InputStream in = Utils.class.getResourceAsStream("/keys/"+path);
+            byte[] fbytes = new byte[(int) in.available()];
+            in.read(fbytes);
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(fbytes);
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            return kf.generatePublic(spec);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {

@@ -62,12 +62,12 @@ public class Assimetrico {
         return kf.generatePublic(spec);
     }
 
-    public void encryptFile(byte[] input, File output, PrivateKey key) throws IOException, GeneralSecurityException {
+    public void encryptFile(byte[] input, File output, PublicKey key) throws IOException, GeneralSecurityException {
         this.cipher.init(Cipher.ENCRYPT_MODE, key);
         writeToFileAssimetrico(output, this.cipher.doFinal(input));
     }
 
-    public void decryptFile(byte[] input, File output, PublicKey key) throws IOException, GeneralSecurityException {
+    public void decryptFile(byte[] input, File output, PrivateKey key) throws IOException, GeneralSecurityException {
         this.cipher.init(Cipher.DECRYPT_MODE, key);
         writeToFileAssimetrico(output, this.cipher.doFinal(input));
     }
@@ -79,12 +79,12 @@ public class Assimetrico {
         fos.close();
     }
 
-    public String encryptText(String msg, PrivateKey key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException{
+    public String encryptText(String msg, PublicKey key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException{
         this.cipher.init(Cipher.ENCRYPT_MODE, key);
         return Utils.encriptarB64( new String (cipher.doFinal(msg.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
     }
 
-    public String decryptText(String msg, PublicKey key) throws InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException {
+    public String decryptText(String msg, PrivateKey key) throws InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException {
         this.cipher.init(Cipher.DECRYPT_MODE, key);
         return new String(cipher.doFinal(Utils.desencriptarB64(msg)), StandardCharsets.UTF_8);
     }

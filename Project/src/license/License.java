@@ -12,7 +12,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.Scanner;
 
 public class License {
@@ -233,8 +233,8 @@ public class License {
 
             ac = new Assimetrico(0);
             //InputStream in = getClass().getResourceAsStream("/keys/privateKey");
-            PrivateKey privateKey = Utils.readFileInside("/keys/privateKey");
-            String encrypted_msg = ac.encryptText(Simetrico.SYM_KEY, privateKey);
+            PublicKey publicKey = Utils.readFilePub("/keys/publicKey");
+            String encrypted_msg = ac.encryptText(Simetrico.SYM_KEY, publicKey);
             return encrypted_msg;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
