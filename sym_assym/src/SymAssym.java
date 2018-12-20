@@ -18,9 +18,6 @@ public class SymAssym {
         return new String(encoded, StandardCharsets.UTF_8);
     }
 
-
-
-
     public static String createSymKey() {
         try {
             //Generate Symmetric Key (AES with 128 bits)
@@ -46,19 +43,6 @@ public class SymAssym {
 //        PrivateKey privateKey = pair.getPrivate();
 //        PublicKey publicKey = pair.getPublic();
         return pair;
-    }
-
-    public static void savePubKeyToFile(PublicKey publicKey){
-        try {
-            byte[] key = publicKey.getEncoded();
-            FileOutputStream fos = new FileOutputStream("pubKey");
-            fos.write(key);
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static PublicKey loadPublicKey(String stored) {
@@ -94,65 +78,6 @@ public class SymAssym {
         return null;
     }
 
-
-
-    public static PublicKey loadPubKeyFromFile(String fileName){
-        try {
-            FileInputStream fis = new FileInputStream(fileName);
-            byte[] encKey = new byte[fis.available()];
-            fis.read(encKey);
-            fis.close();
-
-            X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            KeyFactory kf = KeyFactory.getInstance("RSA");
-            PublicKey pubKey = kf.generatePublic(pubKeySpec);
-
-            return pubKey;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static void savePriKeytoFile(PrivateKey privateKey){
-        try {
-            byte[] key = privateKey.getEncoded();
-            FileOutputStream fos = new FileOutputStream("priKey");
-            fos.write(key);
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static PrivateKey loadPriKeyFromFile(String filename) {
-        try {
-            byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
-            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-            KeyFactory kf = KeyFactory.getInstance("RSA");
-            return kf.generatePrivate(spec);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
     public static byte[] encryptAES(SecretKey secKey, String plainText) {
         try {
             //Encrypt plain text using AES
@@ -176,7 +101,6 @@ public class SymAssym {
         return null;
     }
 
-
     public static byte[] encryptRSA(SecretKey symKey, PublicKey publicKey) {
         try {
             //Encrypt the key using RSA public key
@@ -184,10 +108,9 @@ public class SymAssym {
             cipher.init(Cipher.PUBLIC_KEY, publicKey);
             byte[] encryptedKey = cipher.doFinal(symKey.getEncoded()/*Secret Key From Step 1*/);
 
+            //Send encrypted data (byteCipherText) + encrypted AES Key (encryptedKey)
             return encryptedKey;
 
-            //TODO write to file instead
-            //Send encrypted data (byteCipherText) + encrypted AES Key (encryptedKey)
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (BadPaddingException e) {

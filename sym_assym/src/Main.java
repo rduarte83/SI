@@ -16,6 +16,7 @@ public class Main {
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
         String plainText = SymAssym.readFile(TEXT_FILENAME);
 
+        //Create Keys
         String symKey = SymAssym.createSymKey();
 
         System.out.println("SymKey: "+symKey);
@@ -33,48 +34,58 @@ public class Main {
         SymAssym.createAsymKeys();
         KeyPair kp = SymAssym.createAsymKeys();
 
-        PublicKey publicKey = kp.getPublic();
-        //Public key to file
-        SymAssym.savePubKeyToFile(publicKey);
-        System.out.println("pubkey:" +publicKey);
-
         //Public key to string
+        PublicKey publicKey = kp.getPublic();
         String b64pubKey = Base64.getEncoder().encodeToString(publicKey.getEncoded());
         System.out.println("Encoded Public Key: "+b64pubKey);
 
-        //Ler a pub do ficheiro
-        publicKey = SymAssym.loadPubKeyFromFile("pubKey");
+        /*//Ler a pub do ficheiro
+        //publicKey = SymAssym.loadPubKeyFromFile("pubKey");*/
 
         //Encrypt Assym RSA
         byte[] encryptedKey = SymAssym.encryptRSA(symKeyDec, SymAssym.loadPublicKey(PUBLIC_KEY));
         System.out.println("encryptedKey: "+encryptedKey);
 
-        PrivateKey privateKey = kp.getPrivate();
-        //Private key to file
-        SymAssym.savePriKeytoFile(privateKey);
-        System.out.println("privKey: "+privateKey);
-
         //Private key to string
+        PrivateKey privateKey = kp.getPrivate();
         String b64priKey = Base64.getEncoder().encodeToString(privateKey.getEncoded());
         System.out.println("Encoded Private Key: "+b64priKey);
 
-        //Ler a pri do ficheiro
-        privateKey = SymAssym.loadPriKeyFromFile("priKey");
-        System.out.println("privKey: "+privateKey);
 
         //Decoding
         String decodedText = SymAssym.decrypt (SymAssym.loadPrivateKey(PRIVATE_KEY), symText, encryptedKey);
         System.out.println("decodedText:" +decodedText);
 
-        //Signing
-            KeyPair kpSign = SignVerify.createAsymKeys();
-            PrivateKey privateKeySign = kpSign.getPrivate();
-            PublicKey publicKeySign = kpSign.getPublic();
 
-            String sig = SignVerify.sign(plainText, privateKeySign);
-            System.out.println("Signature: "+sig);
+        /////////////////////////////////////////////////////////////////
+
+
+        //Signing
+        //Creating Keys
+        KeyPair kpSign = SignVerify.createAsymKeys();
+        PrivateKey privateKeySign = kpSign.getPrivate();
+        PublicKey publicKeySign = kpSign.getPublic();
+
+//        //Save Private Key to file
+//        SignVerify.savePriKeytoFile(privateKeySign);
+//        System.out.println("privKeySign: "+privateKeySign);
+//
+//        //Read Private Key from file
+//        privateKeySign = SignVerify.loadPriKeyFromFile("privateKeySign");
+//        System.out.println("privKeySign: "+privateKey);
+
+         //Save Public key to file
+        SignVerify.savePubKeyToFile(publicKeySign);
+        System.out.println("pubkeySign:" +publicKeySign);
+
+        String sig = SignVerify.sign(plainText, privateKeySign);
+        System.out.println("Signature: "+sig);
 
         //Verifying
+        //Read Public Key from file
+        publicKeySign = SignVerify.loadPubKeyFromFile("publicKeySign");
+        System.out.println("pubKeySignFromFile: "+publicKeySign);
+        //
         Boolean isSigned = SignVerify.verify(plainText, sig, publicKeySign);
         if (isSigned) {
             System.out.println("Dados autênticos");

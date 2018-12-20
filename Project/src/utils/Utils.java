@@ -1,9 +1,7 @@
 package utils;
 
-
 import license.DadosMaquina;
 import org.jutils.jhardware.HardwareInfo;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.NetworkInterface;

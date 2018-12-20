@@ -126,7 +126,6 @@ class LicencaDadosJson{
         LicencaDados.setInicioValidadeLicenca(this.getInicioValidadeLicenca());
         LicencaDados.setFimValidadeLicenca(this.getFimValidadeLicenca());
     }
-
 }
 
 class LicencaDados {
