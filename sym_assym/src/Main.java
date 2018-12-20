@@ -1,15 +1,14 @@
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.*;
 import java.util.Base64;
 
 public class Main {
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        Cifras c = new Cifras();
-        String symKey = c.createSymKey();
+        //Encoding
+
+        String symKey = SymAssym.createSymKey();
         String plainText = "O João é muito lindo!";
 
         System.out.println("SymKey: "+symKey);
@@ -19,20 +18,43 @@ public class Main {
         byte[] encodedKey = dec.decode(symKey);
         SecretKey symKeyDec = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
 
-        byte [] symText = c.encryptAES(symKeyDec , plainText);
+        byte [] symText = SymAssym.encryptAES(symKeyDec , plainText);
         System.out.println("TCifrado: "+symText);
 
-        c.createAsymKeys();
+        SymAssym.createAsymKeys();
+        KeyPair kp = SymAssym.createAsymKeys();
 
-        PublicKey publicKey = c.getPublicKey();
+        PublicKey publicKey = kp.getPublic();
         System.out.println("pubkey:" +publicKey);
-        byte[] encryptedKey = c.encryptRSA(symKeyDec, publicKey);
+        byte[] encryptedKey = SymAssym.encryptRSA(symKeyDec, publicKey);
         System.out.println("encryptedKey: "+encryptedKey);
 
-        PrivateKey privateKey = c.getPrivateKey();
+
+        //Decoding
+        PrivateKey privateKey = kp.getPrivate();
         System.out.println("privKey: "+privateKey);
-        String decodedText = c.decrypt (privateKey, symText, encryptedKey);
+        String decodedText = SymAssym.decrypt (privateKey, symText, encryptedKey);
         System.out.println("decodedText:" +decodedText);
+
+        //Signing
+            KeyPair kpSign = SignVerify.createAsymKeys();
+            PrivateKey privateKeySign = kpSign.getPrivate();
+            PublicKey publicKeySign = kpSign.getPublic();
+
+            String sig = SignVerify.sign(plainText, privateKeySign);
+            System.out.println("Signature: "+sig);
+
+
+        //Verifying
+        Boolean isSigned = SignVerify.verify(plainText, sig, publicKeySign);
+        if (isSigned) {
+            System.out.println("Dados autênticos");
+        } else {
+            System.out.println("Dados NÃO autênticos");
+        };
+
+
+
 
     }
 }

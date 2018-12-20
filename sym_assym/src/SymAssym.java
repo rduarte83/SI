@@ -4,32 +4,40 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.Base64;
 
-public class Cifras {
+public class SymAssym {
     private PrivateKey privateKey;
     private PublicKey publicKey;
     private KeyPairGenerator kpg;
     private KeyPair pair;
 
-    public Cifras() throws NoSuchAlgorithmException {
+    public SymAssym() throws NoSuchAlgorithmException {
         this.kpg = KeyPairGenerator.getInstance("RSA");
         this.kpg.initialize(2048);
     }
 
-    public PrivateKey getPrivateKey() {
+   /* public PrivateKey getPrivateKey() {
         return this.privateKey;
     }
 
     public PublicKey getPublicKey() {
         return this.publicKey;
-    }
+    }*/
 
-    public void createAsymKeys() {
+    /*public void createAsymKeys() {
         this.pair = this.kpg.generateKeyPair();
         this.privateKey = pair.getPrivate();
         this.publicKey = pair.getPublic();
+    }*/
+    public static KeyPair createAsymKeys() throws NoSuchAlgorithmException {
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+        kpg.initialize(2048);
+        KeyPair pair = kpg.generateKeyPair();
+//        PrivateKey privateKey = pair.getPrivate();
+//        PublicKey publicKey = pair.getPublic();
+        return pair;
     }
 
-    public String createSymKey() {
+    public static String createSymKey() {
         try {
             //Generate Symmetric Key (AES with 128 bits)
             KeyGenerator generator = null;
@@ -37,8 +45,7 @@ public class Cifras {
             generator.init(128); // The AES key size in number of bits
             SecretKey secKey = generator.generateKey();
             //Convert to string - Base64 encoding
-            Base64.Encoder enc = Base64.getEncoder();
-            String stringKey = enc.encodeToString(secKey.getEncoded());
+            String stringKey = Base64.getEncoder().encodeToString(secKey.getEncoded());
 
             return stringKey;
 
@@ -48,7 +55,7 @@ public class Cifras {
         return null;
     }
 
-    public byte[] encryptAES (SecretKey secKey, String plainText) {
+    public static byte[] encryptAES(SecretKey secKey, String plainText) {
         try {
             //Encrypt plain text using AES
             Cipher aesCipher = Cipher.getInstance("AES");
@@ -72,7 +79,7 @@ public class Cifras {
     }
 
 
-    public byte[] encryptRSA (SecretKey symKey, PublicKey publicKey) {
+    public static byte[] encryptRSA(SecretKey symKey, PublicKey publicKey) {
         try {
             //Encrypt the key using RSA public key
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
@@ -98,7 +105,7 @@ public class Cifras {
     }
 
 
-    public String decrypt(PrivateKey privateKey, byte[] byteCipherText, byte[] encryptedKey) {
+    public static String decrypt(PrivateKey privateKey, byte[] byteCipherText, byte[] encryptedKey) {
         try {
             //On the client side, decrypt symmetric key using RSA private key
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
@@ -129,5 +136,4 @@ public class Cifras {
         }
         return null;
     }
-
 }
