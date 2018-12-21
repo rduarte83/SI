@@ -1,15 +1,18 @@
 package license;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import pt.gov.cartaodecidadao.*;
-import utils.Utils;
-import java.io.*;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.Base64;
 
 public class CartaoBiblioteca {
     static {
@@ -52,8 +55,9 @@ public class CartaoBiblioteca {
 
     public static String getCartaoInfo(){
 
-        Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
+
         try {
+            Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);
 
@@ -96,7 +100,7 @@ public class CartaoBiblioteca {
         return "";
     }
 
-    public static void assinar(String ficheiroTextoClaro, String pathFicheiroAssinado) {
+    public static String assinar(String stringB64) {
         try {
             String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
             Provider[] provs = Security.getProviders();
@@ -105,81 +109,34 @@ public class CartaoBiblioteca {
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);
 
-            /*Enumeration<String> als = ks.aliases();
-            while (als.hasMoreElements()){
-                System.out.println( als.nextElement() );
-            }*/
-
-
-            // ler Primeira vez
-            FileInputStream tClaro = new FileInputStream(ficheiroTextoClaro);
-            byte[] buffTClaro = new byte[(int)tClaro.available()];
-            tClaro.read(buffTClaro);
-            tClaro.close();
-
-            // Base 64
-            FileOutputStream FOSFileBase64 = new FileOutputStream(ficheiroTextoClaro);
-            FOSFileBase64.write(Base64.encode(buffTClaro).getBytes());
-            FOSFileBase64.flush();
-            FOSFileBase64.close();
-
-            // ler Segunda vez
-            FileInputStream textoEncriptado = new FileInputStream(ficheiroTextoClaro);
-            byte[] buffTextoEncriptado = new byte[(int)textoEncriptado.available()];
-            textoEncriptado.read(buffTextoEncriptado);
-            textoEncriptado.close();
+            byte[] byteTextoEncriptado = stringB64.getBytes(StandardCharsets.UTF_8);
 
             PrivateKey pk = (PrivateKey) ks.getKey(alias, null);
 
             Signature sg = Signature.getInstance("SHA256withRSA", prov);
             sg.initSign(pk);
 
-            sg.update(buffTextoEncriptado); // Pegar no texto em claro e encriptar com a private key do cartão de cidadao
+            sg.update(byteTextoEncriptado); // Quando assina com private Key...
             byte[] buffSign = sg.sign();
+            String textoSignB64 = Base64.getEncoder().encodeToString(buffSign);
 
             Certificate ct = ks.getCertificate(alias);
             byte[] buffCert = ct.getEncoded();
+            String textoCertB64 = Base64.getEncoder().encodeToString(buffCert);
 
-            // Escrever para ficheiro assinado com todos os dados.
-            FileOutputStream FOSFileAssinado = new FileOutputStream(ficheiroTextoClaro);
-            FOSFileAssinado.write("/*TEXTOCLARO*/".getBytes());
-            FOSFileAssinado.write(buffTextoEncriptado);
-            FOSFileAssinado.write("/*ENDTEXTOCLARO*/".getBytes());
-            FOSFileAssinado.write("/*ASS*/".getBytes());
-            FOSFileAssinado.write(buffSign);
-            FOSFileAssinado.write("/*ENDASS*/".getBytes());
-            FOSFileAssinado.write("/*CERT*/".getBytes());
-            FOSFileAssinado.write(buffCert);
-            FOSFileAssinado.write("/*ENDCERT*/".getBytes());
-            FOSFileAssinado.flush();
-            FOSFileAssinado.close();
-
-            // ler Segunda vez
-            FileInputStream textoEncriptadoUltimo = new FileInputStream(ficheiroTextoClaro);
-            byte[] buffTextoEncriptadoUltimo = new byte[(int)textoEncriptadoUltimo.available()];
-            textoEncriptadoUltimo.read(buffTextoEncriptadoUltimo);
-            textoEncriptadoUltimo.close();
-
-            // Base 64
-            FileOutputStream FOSFileBase64Ultimo = new FileOutputStream(ficheiroTextoClaro);
-            FOSFileBase64Ultimo.write(Utils.encriptarB64(new String( buffTextoEncriptadoUltimo, StandardCharsets.UTF_8)).getBytes(StandardCharsets.UTF_8));
-            FOSFileBase64Ultimo.flush();
-            FOSFileBase64Ultimo.close();
+            // Construir string para encriptar
+            String resposta =  "/*TEXTOCLARO*/";
+            resposta+= stringB64;
+            resposta+= "/*ENDTEXTOCLARO*/";
+            resposta+= "/ASS/";
+            resposta+= textoSignB64;
+            resposta+= "/*ENDASS*/";
+            resposta+= "/*CERT*/";
+            resposta+= textoCertB64;
+            resposta+= "/*ENDCERT*/";
 
 
-
-
-//            // Escrever para o ficheiro destino assinado.
-//            FileOutputStream foSign = new FileOutputStream(ficheiroAssinatura);
-//            foSign.write(buffSign);
-//            foSign.flush();
-//            foSign.close();
-//
-//            // Escrever para o fihciero destino certificado.
-//            FileOutputStream foCert = new FileOutputStream(ficheiroCert);
-//            foCert.write(buffCert);
-//            foCert.flush();
-//            foCert.close();
+            return Base64.getEncoder().encodeToString(resposta.getBytes(StandardCharsets.UTF_8));
         } catch (SignatureException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -197,7 +154,7 @@ public class CartaoBiblioteca {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return null;
     }
 
     public static void validarAssinatura (String fichTClaro, String fichAssinatura, String fichCert) {

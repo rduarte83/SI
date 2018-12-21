@@ -2,52 +2,53 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Project:jar" />
+      <artifact name="Cliente:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da4706cf-ccbf-40c0-b0eb-fc5f5762dd82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Cliente_jar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Server/src/utils/Crypto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Client_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_fasterxml_jackson_core_jackson_annotations_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_fasterxml_jackson_core_jackson_core_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_fasterxml_jackson_core_jackson_databind_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_jhardware_jHardware_0_8_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/pteidlibj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/153435623.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KeyPair/privateKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KeyPair/publicKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KeyPair/text.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KeyPair/text_decrypted.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KeyPair/text_encrypted.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/module_project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Run.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keys/privateKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keys/publicKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/license/CartaoBiblioteca.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/license/DadosMaquina.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/license/LicencaDados.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/license/License.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Assimetrico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Simetrico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste-c.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/artifacts/Client_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/com_fasterxml_jackson_core_jackson_annotations_2_9_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/com_fasterxml_jackson_core_jackson_core_2_9_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/com_fasterxml_jackson_core_jackson_databind_2_9_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/org_jhardware_jHardware_0_8_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/pteidlibj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/153435623.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/Client.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/privateKey" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/publicKey" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/text.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/text_decrypted.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/text_encrypted.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/module_project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/Run.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/app/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/keys/privateKey" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/keys/publicKey" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/license/CartaoBiblioteca.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/license/DadosMaquina.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/license/LicencaDados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/license/License.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Assimetrico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Simetrico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/teste-c.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Project/teste.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/Dat/153435623.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Dat/153435623.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/License/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/License/License.java" afterDir="false" />
@@ -72,7 +73,7 @@
     <session id="2107578611">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.opened" value="2" />
         </counts>
@@ -100,9 +101,113 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1710577988">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="458" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="458" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="dat" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/license/License.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="102" column="40" lean-forward="true" selection-start-line="101" selection-start-column="8" selection-end-line="102" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/license/CartaoBiblioteca.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="129" column="26" lean-forward="true" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/Assinatura.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="52" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/Crypto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="38" column="69" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/license/LicencaDados.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1513">
+              <caret line="130" column="6" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="6" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#631#632#0" expanded="true" />
+                <element signature="e#666#667#0" expanded="true" />
+                <element signature="e#906#907#0" expanded="true" />
+                <element signature="e#954#955#0" expanded="true" />
+                <element signature="e#1588#1589#0" expanded="true" />
+                <element signature="e#1630#1631#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -151,7 +256,6 @@
         <option value="$PROJECT_DIR$/src/utils/GerarChaves.java" />
         <option value="$PROJECT_DIR$/teste.dat" />
         <option value="$PROJECT_DIR$/src/license/DadosMaquina.java" />
-        <option value="$PROJECT_DIR$/src/license/CartaoBiblioteca.java" />
         <option value="$PROJECT_DIR$/153435623.dat" />
         <option value="$PROJECT_DIR$/src/utils/Simetrico.java" />
         <option value="$PROJECT_DIR$/src/app/App.java" />
@@ -161,6 +265,7 @@
         <option value="$PROJECT_DIR$/src/utils/Assinatura.java" />
         <option value="$PROJECT_DIR$/src/utils/Crypto.java" />
         <option value="$PROJECT_DIR$/src/license/License.java" />
+        <option value="$PROJECT_DIR$/src/license/CartaoBiblioteca.java" />
       </list>
     </option>
   </component>
@@ -191,86 +296,47 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
               <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="Client_jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente_jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Cliente" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="license" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="license" type="462c0819:PsiDirectoryNode" />
-              <item name="DadosMaquina.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="license" type="462c0819:PsiDirectoryNode" />
-              <item name="LicencaDados.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="Crypto.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -284,9 +350,9 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545348109445" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Cliente" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545350919362" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.1179078" />
   </component>
@@ -307,10 +373,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JAR Application.Cliente.jar">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.App" />
-      <module name="Client" />
+      <module name="Cliente" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="app.*" />
@@ -323,7 +389,7 @@
     </configuration>
     <configuration name="Assimetrico" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="utils.Assimetrico" />
-      <module name="Client" />
+      <module name="Cliente" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="utils.*" />
@@ -336,7 +402,7 @@
     </configuration>
     <configuration name="GenerateKeys" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="utils.GenerateKeys" />
-      <module name="Client" />
+      <module name="Cliente" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="utils.*" />
@@ -349,19 +415,25 @@
     </configuration>
     <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Run" />
-      <module name="Client" />
+      <module name="Cliente" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="Cliente.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Cliente_jar/Cliente.jar" />
+      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.App" />
       <item itemvalue="Application.Assimetrico" />
       <item itemvalue="Application.GenerateKeys" />
       <item itemvalue="Application.Run" />
+      <item itemvalue="JAR Application.Cliente.jar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Cliente.jar" />
         <item itemvalue="Application.App" />
         <item itemvalue="Application.Assimetrico" />
         <item itemvalue="Application.GenerateKeys" />
@@ -390,17 +462,19 @@
       <workItem from="1545156894907" duration="16000" />
       <workItem from="1545157076949" duration="336000" />
       <workItem from="1545342215953" duration="2332000" />
-      <workItem from="1545344944659" duration="2931000" />
+      <workItem from="1545344944659" duration="2901000" />
+      <workItem from="1545348141739" duration="2751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71398000" />
+    <option name="totallyTimeSpent" value="74119000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20575693" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20788912" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -409,7 +483,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42274678" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.42274678" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39914164" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -631,9 +705,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/153435623.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/license/LicencaDados.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
+        <state relative-caret-position="1513">
           <caret line="130" column="6" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -647,16 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/license/CartaoBiblioteca.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="9" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
@@ -664,10 +735,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/153435623.dat">
+    <entry file="file://$PROJECT_DIR$/out/artifacts/Cliente_jar/153435623.dat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Crypto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        <state relative-caret-position="456">
+          <caret line="38" column="69" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -681,10 +758,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Crypto.java">
+    <entry file="file://$PROJECT_DIR$/src/license/CartaoBiblioteca.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="69" lean-forward="true" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="69" />
+        <state relative-caret-position="367">
+          <caret line="129" column="26" lean-forward="true" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -693,8 +770,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/license/License.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="100" column="12" lean-forward="true" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
+        <state relative-caret-position="146">
+          <caret line="102" column="40" lean-forward="true" selection-start-line="101" selection-start-column="8" selection-end-line="102" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -706,8 +783,15 @@
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor />
-          <last-edited>Client:jar</last-edited>
+          <artifact-editor>
+            <show-content>
+              <type id="library" />
+              <type id="javaee-facet-resources" />
+              <type id="artifact" />
+              <type id="jpa-descriptors" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>Cliente:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -724,7 +808,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.1179078" />
               </list>
             </option>
           </splitter-proportions>
@@ -755,7 +839,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Client</last-edited>
+          <last-edited>Cliente</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -771,7 +855,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.3954023" />
+                <option value="0.1179078" />
               </list>
             </option>
           </splitter-proportions>

@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
 
 public class Assimetrico {
     private KeyPairGenerator keyGen;
@@ -48,6 +47,12 @@ public class Assimetrico {
         this.keyGen.initialize(keylength);
         this.cipher = Cipher.getInstance("RSA");
     }
+
+    public Assimetrico() throws NoSuchAlgorithmException, NoSuchPaddingException{
+        this.keyGen = KeyPairGenerator.getInstance("RSA");
+        this.keyGen.initialize(1024);
+        this.cipher = Cipher.getInstance("RSA");
+    }
     //https://docs.oracle.com/javase/8/docs/api/java/security/spec/PKCS8EncodedKeySpec.html
     public PrivateKey getPrivate(String filename) throws Exception {
         byte[] keyBytes = Files.readAllBytes(new File(filename).toPath());
@@ -62,16 +67,6 @@ public class Assimetrico {
         KeyFactory kf = KeyFactory.getInstance("RSA");
         return kf.generatePublic(spec);
     }
-
-    public static Key loadPrivateKey(String stored) throws GeneralSecurityException, IOException
-    {
-        byte[] data = Base64.getDecoder().decode((stored.getBytes()));
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(data);
-        KeyFactory fact = KeyFactory.getInstance("RSA");
-        return fact.generatePrivate(spec);
-
-    }
-
 
     public void encryptFile(byte[] input, File output, PublicKey key) throws IOException, GeneralSecurityException {
         this.cipher.init(Cipher.ENCRYPT_MODE, key);

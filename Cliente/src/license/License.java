@@ -2,6 +2,7 @@ package license;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.Assimetrico;
+import utils.Crypto;
 import utils.Simetrico;
 import utils.Utils;
 
@@ -13,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class License {
@@ -97,7 +99,7 @@ public class License {
         LicencaDados.setVersao(versao);
 
         // hash -> Tamanho do programa
-        File file = new File("cliente.jar");
+        File file = new File("Cliente.jar");
         long fileLength = file.length();
         LicencaDados.setTamanhoPrograma(fileLength);
 
@@ -109,29 +111,21 @@ public class License {
             LicencaDadosJson ldj = new LicencaDadosJson();
             ldj.setDadosClass();
             String jsonToEncript = mapper.writeValueAsString(ldj);
-            // Nome do Ficheiro Criar...
+
+            // Nome do Ficheiro Criar... & Encriptar
             String nomeFicheiro = LicencaDados.getIdentificacaoCivil()+".dat";
-            FileOutputStream fos = new FileOutputStream(nomeFicheiro);
-            byte[] output = Utils.encriptarB64(jsonToEncript).getBytes(StandardCharsets.UTF_8);
-            fos.write(output);
-            fos.flush();
-            fos.close();
 
-            CartaoBiblioteca.assinar(nomeFicheiro, "assinatura.dat");
+            String jsonEcripted = Base64.getEncoder().encodeToString(jsonToEncript.getBytes(StandardCharsets.UTF_8));
 
-            String finalEnc = encriptarDadosSim(nomeFicheiro);
-//            finalEnc += System.getProperty("line.separator");
-            finalEnc += "\n";
-            // Encriptar Asym Chave
-            finalEnc += encriptarChaveAsym();
+            // Assinar Cartão
+            String textoAssB64 = CartaoBiblioteca.assinar(jsonEcripted);
 
             // Juntar Tudo!!
             FileOutputStream fosFinal = new FileOutputStream(nomeFicheiro);
-            byte[] outputFinal = Utils.encriptarB64(finalEnc).getBytes();
-            fosFinal.write(outputFinal);
+            byte[] finalEnc = Crypto.encriptarTudo(textoAssB64);
+            fosFinal.write(finalEnc);
             fosFinal.flush();
             fosFinal.close();
-
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -231,10 +225,11 @@ public class License {
         Assimetrico ac = null;
         try {
 
-            ac = new Assimetrico(0);
+            ac = new Assimetrico();
             //InputStream in = getClass().getResourceAsStream("/keys/privateKey");
-            PublicKey publicKey = Utils.readFilePub("/keys/publicKey");
+            PublicKey publicKey = Utils.readFilePub("publicKey");
             String encrypted_msg = ac.encryptText(Simetrico.SYM_KEY, publicKey);
+            System.out.println(encrypted_msg);
             return encrypted_msg;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

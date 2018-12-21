@@ -40,7 +40,6 @@ public class Utils {
         String currentLine = null;
         String[] linhas = new String[2];
         while ((currentLine = reader.readLine()) != null) {
-            System.out.println("currentLine:"+currentLine);
             if (reader.getLineNumber() == 1) {
                 linhas[0] = currentLine;
             }

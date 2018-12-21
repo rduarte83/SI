@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="Client:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Client_jar</output-path>
-    <root id="archive" name="Project.jar">
-      <element id="module-output" name="Client" />
+  <artifact type="jar" build-on-make="true" name="Cliente:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Cliente_jar</output-path>
+    <root id="archive" name="Cliente.jar">
+      <element id="module-output" name="Cliente" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jackson-annotations-2.9.7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jackson-core-2.9.7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files/Portugal Identity Card/sdk/Java/pteidlibj.jar" path-in-jar="/" />
