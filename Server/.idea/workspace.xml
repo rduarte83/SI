@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6378e888-897c-4c6f-8492-19f13f93cf50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/pteidlibj.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/License/CartaoBiblioteca.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cliente/src/utils/SignVerify.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cliente.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/SignVerify.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Cliente/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Cliente/153435623.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/153435623.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Cliente/src/license/CartaoBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/src/license/CartaoBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/src/license/LicencaDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/src/license/LicencaDados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Cliente/src/license/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/src/license/License.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Cliente/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/src/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dat/153435623.dat" beforeDir="false" afterPath="$PROJECT_DIR$/Dat/153435623.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/License/LicencaDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/License/LicencaDados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/License/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/License/License.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Crypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Crypto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sym_assym/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sym_assym/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,38 +26,39 @@
     <session id="-1165553380">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.15" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="dat" value="8" />
-          <entry key="java" value="8" />
+          <entry key="dat" value="11" />
+          <entry key="java" value="12" />
+          <entry key="lic" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="8" />
-          <entry key="PLAIN_TEXT" value="8" />
+          <entry key="JAVA" value="12" />
+          <entry key="PLAIN_TEXT" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2339" />
+          <entry key="java" value="2831" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2339" />
+          <entry key="JAVA" value="2831" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.61349696">
+    <splitter split-orientation="horizontal" split-proportion="0.56564415">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -72,8 +73,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/License/License.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+                <state relative-caret-position="212">
+                  <caret line="38" column="71" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="38" selection-end-column="71" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -84,7 +85,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/License/CartaoBiblioteca.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1764">
+                <state relative-caret-position="2261">
                   <caret line="142" column="28" selection-start-line="142" selection-start-column="28" selection-end-line="142" selection-end-column="28" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -94,10 +95,13 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Dat/153435623.dat">
+            <entry file="file://$PROJECT_DIR$/src/License/LicencaDados.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="19" selection-start-column="19" selection-end-column="19" />
+                <state relative-caret-position="391">
+                  <caret line="26" column="89" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -105,15 +109,33 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/utils/Crypto.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-12">
-                  <caret line="16" column="38" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="38" />
+                <state relative-caret-position="102">
+                  <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/utils/SignVerify.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1972">
+                  <caret line="128" column="36" selection-start-line="128" selection-start-column="26" selection-end-line="128" selection-end-column="36" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Dat/153435623.dat">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="19" selection-start-column="19" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -141,11 +163,12 @@
         <option value="$PROJECT_DIR$/src/Utils/Assimetrico.java" />
         <option value="$PROJECT_DIR$/src/Server.java" />
         <option value="$PROJECT_DIR$/src/Utils/Utils.java" />
-        <option value="$PROJECT_DIR$/src/License/LicencaDados.java" />
         <option value="$PROJECT_DIR$/src/utils/Utils.java" />
         <option value="$PROJECT_DIR$/src/License/CartaoBiblioteca.java" />
         <option value="$PROJECT_DIR$/src/utils/Crypto.java" />
+        <option value="$PROJECT_DIR$/src/License/LicencaDados.java" />
         <option value="$PROJECT_DIR$/src/License/License.java" />
+        <option value="$PROJECT_DIR$/src/utils/SignVerify.java" />
       </list>
     </option>
   </component>
@@ -167,8 +190,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -184,50 +205,21 @@
             <path>
               <item name="Server" type="b2602c69:ProjectViewProjectNode" />
               <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="KeyPair" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="License" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="License" type="462c0819:PsiDirectoryNode" />
-              <item name="DadosMaquina.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="License" type="462c0819:PsiDirectoryNode" />
-              <item name="LicencaDados.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="lic" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545360099006" />
-    <property name="last_opened_file_path" value="C:/Program Files/Portugal Identity Card/sdk/Java/pteidlibj.jar!/" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545362904606" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sym_assym" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -237,9 +229,11 @@
       <recent name="D:\Trabalho\SI\Server" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="utils" />
       <recent name="License" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Trabalho\SI\Server" />
       <recent name="D:\Trabalho\SI\Server\Dat" />
       <recent name="D:\Trabalho\SI\Server\src\keys" />
       <recent name="D:\Trabalho\SI\Server\src" />
@@ -286,12 +280,14 @@
       <workItem from="1545156915464" duration="159000" />
       <workItem from="1545157414441" duration="10000" />
       <workItem from="1545340565947" duration="775000" />
-      <workItem from="1545344934293" duration="13468000" />
+      <workItem from="1545344934293" duration="16587000" />
+      <workItem from="1545363313497" duration="562000" />
+      <workItem from="1545365185672" duration="890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21100000" />
+    <option name="totallyTimeSpent" value="25671000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -302,7 +298,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.13113007" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.13326226" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.49840087" weight="0.32939914" />
       <window_info anchor="bottom" id="Version Control" order="1" show_stripe_button="false" />
@@ -310,7 +306,7 @@
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.44189766" side_tool="true" weight="0.32939914" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.3295063" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.55810237" visible="true" weight="0.35944206" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.55810237" visible="true" weight="0.35944206" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
@@ -355,23 +351,6 @@
     <entry file="file://$PROJECT_DIR$/src/License/DadosMaquina.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/License/LicencaDados.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="140" column="5" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-406">
@@ -396,17 +375,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dat/153435623.dat">
+    <entry file="file://$PROJECT_DIR$/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        <state relative-caret-position="306">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/License/CartaoBiblioteca.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1764">
+        <state relative-caret-position="2261">
           <caret line="142" column="28" selection-start-line="142" selection-start-column="28" selection-end-line="142" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/License/LicencaDados.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="89" selection-start-line="26" selection-start-column="89" selection-end-line="26" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -415,18 +404,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/Crypto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="16" column="38" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="38" />
+        <state relative-caret-position="102">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/153435623.dat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lic/153435623.lic">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dat/153435623.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/SignVerify.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="128" column="36" selection-start-line="128" selection-start-column="26" selection-end-line="128" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/License/License.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+        <state relative-caret-position="212">
+          <caret line="38" column="71" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="38" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

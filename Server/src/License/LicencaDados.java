@@ -20,6 +20,11 @@ class LicencaDadosJson{
     private long tamanhoPrograma;
     private String inicioValidadeLicenca;
     private String fimValidadeLicenca;
+    private String chavePublica;
+
+    public String getChavePublica() { return chavePublica; }
+
+    public void setChavePublica(String chavePublica) { this.chavePublica = chavePublica; }
 
     public DadosMaquina getDadosMaquina() {
         return dadosMaquina;
@@ -112,6 +117,7 @@ class LicencaDadosJson{
         this.setTamanhoPrograma(LicencaDados.getTamanhoPrograma());
         this.setInicioValidadeLicenca(LicencaDados.getInicioValidadeLicenca());
         this.setFimValidadeLicenca(LicencaDados.getFimValidadeLicenca());
+        this.setChavePublica(LicencaDados.getChavePublica());
     }
 
     public void getDadosClass(){
@@ -125,6 +131,7 @@ class LicencaDadosJson{
         LicencaDados.setTamanhoPrograma(this.getTamanhoPrograma());
         LicencaDados.setInicioValidadeLicenca(this.getInicioValidadeLicenca());
         LicencaDados.setFimValidadeLicenca(this.getFimValidadeLicenca());
+        LicencaDados.setChavePublica(this.getChavePublica());
     }
 
 }
@@ -135,7 +142,7 @@ class LicencaDados {
     private static String ultimoNome;
     private static String email;
     private static String identificacaoCivil;
-    private static PublicKey chavePublica;
+    private static String chavePublica;
     private static DadosMaquina dadosMaquina;
     private static String nomeDaApp;
     private static String versao;
@@ -168,11 +175,9 @@ class LicencaDados {
         LicencaDados.email = email;
     }
 
-    public static PublicKey getChavePublica() {
-        return chavePublica;
-    }
+    public static String getChavePublica() { return chavePublica; }
 
-    public static void setChavePublica(PublicKey chavePublica) {
+    public static void setChavePublica(String chavePublica) {
         LicencaDados.chavePublica = chavePublica;
     }
 

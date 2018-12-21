@@ -1,10 +1,7 @@
 package license;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import utils.Assimetrico;
-import utils.Crypto;
-import utils.Simetrico;
-import utils.Utils;
+import utils.*;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -84,6 +81,9 @@ public class License {
         // Pedir Email
         System.out.print("Insira o seu email:");
         LicencaDados.setEmail(in.nextLine());
+
+        // Gerar Par de chaves Asym
+        SignVerify.generateNewAsymKeys();
 
         // Nome, Email, Chave Publica CC, nº Identificação Civil
         CartaoBiblioteca.getCartaoInfo();

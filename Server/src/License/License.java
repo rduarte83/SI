@@ -3,10 +3,13 @@ package License;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.Assimetrico;
 import utils.Crypto;
+import utils.SignVerify;
 import utils.Utils;
 
 import javax.crypto.NoSuchPaddingException;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
@@ -118,17 +121,21 @@ public class License {
         //B64 jsonDados
         String jsonDadosEncoded = Base64.getEncoder().encodeToString(jsonDados.getBytes(StandardCharsets.UTF_8));
 
-        // E
+        // TODO: GERAR -> PUBLIC KEY CLIENTE
+        byte[] b = Crypto.encriptarTudo(jsonDadosEncoded,LicencaDados.getChavePublica());
+        // Encriptar
+        String finalString = SignVerify.sign(new String ( b, StandardCharsets.UTF_8)+"\n", Crypto.loadPrivateKey(PRIVATE_KEY));
 
-        //criptograma tem de ser decode em 64
-
-        //String criptogramaDecoded = Utils.desencriptarB64();
-
-        //textoClaro = /*TEXTOCLARO*/ - /*ENDTEXTOCLARO*/
-        //Chave publica cc = /*ASS*/ - /*ENDASS*/
-        //Certificado cc = /*CERT*/ - /*ENDCERT*/
-        //validar(textoClaro, Chave publica cc, Certificado cc )
-
-
+        try {
+            new File("lic/").mkdirs();
+            FileOutputStream fos = new FileOutputStream("lic/"+LicencaDados.getIdentificacaoCivil()+".lic");
+            fos.write(finalString.getBytes(StandardCharsets.UTF_8));
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -76,7 +76,7 @@ public class CartaoBiblioteca {
                 LicencaDados.setPrimeiroNome(eid.getGivenName());
                 LicencaDados.setUltimoNome(eid.getSurname());
                 LicencaDados.setIdentificacaoCivil(eid.getCivilianIdNumber());
-                LicencaDados.setChavePublica(key);
+                //LicencaDados.setChavePublica(Base64.getEncoder().encodeToString(key.getEncoded()));
             }
         } catch (PTEID_Exception e) {
             e.printStackTrace();
