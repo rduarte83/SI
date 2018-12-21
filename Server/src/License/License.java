@@ -1,5 +1,6 @@
 package License;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.Assimetrico;
 import utils.Crypto;
 import utils.Utils;
@@ -9,7 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 
 public class License {
     public final static String _DIR_DAT = "Dat/";
@@ -32,45 +36,36 @@ public class License {
             byte[] criptograma = Base64.getDecoder().decode(linhas[0]);
             byte[] chaveEnc = Base64.getDecoder().decode(linhas[1]);
 
-            System.out.println("criptograma:"+criptograma);
-            System.out.println("chaveEnc:"+chaveEnc);
-
             //System.out.println("ChaveDecode:"+ new String( Utils.desencriptarB64(chaveEnc), StandardCharsets.UTF_8));
             String texto = Crypto.desencriptar(Crypto.loadPrivateKey(PRIVATE_KEY), criptograma, chaveEnc);
             String textoDecoded = new String ( Base64.getDecoder().decode(texto), StandardCharsets.UTF_8) ;
-            System.out.println("json:"+texto);
-
+            //System.out.println("json:"+texto);
+            // Encoded
             String jsonEncoded = textoDecoded.substring( textoDecoded.indexOf("/*TEXTOCLARO*/")+"/*TEXTOCLARO*/".length(), textoDecoded.indexOf("/*ENDTEXTOCLARO*/") );
             String assEncoded = textoDecoded.substring( textoDecoded.indexOf("/*ASS*/")+"/*ASS*/".length(), textoDecoded.indexOf("/*ENDASS*/") );
             String certEncoded = textoDecoded.substring( textoDecoded.indexOf("/*CERT*/")+"/*CERT*/".length(), textoDecoded.indexOf("/*ENDCERT*/") );
+            // Decoded
+            String jsonDecoded = new String(Base64.getDecoder().decode(jsonEncoded), StandardCharsets.UTF_8);
+            byte[] assDecoded = Base64.getDecoder().decode(assEncoded);
+            String certDecoded = certEncoded;
 
-            System.out.println("códigoFinal:"+new String ( Base64.getDecoder().decode(nT), StandardCharsets.UTF_8));
+            // TODO: Verificar se Certificado Valido.
+            // Verificar se Assinatura Valida.
+            boolean isValid = CartaoBiblioteca.validarAssinatura2(jsonEncoded,assDecoded,certDecoded);
+            if( !isValid ) return;
 
+            // Inserir validade do ficheiro
+            String finalLicense = insereValidade(jsonDecoded);
+
+            // Comparar tamanho dos ficheiros.
             File file = new File("Cliente.jar");
             long fileLength = file.length();
-            System.out.println("tamanho:"+fileLength);
 
-            //System.out.println(chave);
+            if ( fileLength != LicencaDados.getTamanhoPrograma() ) return;
 
-            //
+            // Gerar .LIC
+            gerarLic(finalLicense, assDecoded, certDecoded);
 
-            //desencriptar ASSYM
-            //SYM
-            //B64
-
-            //criptograma tem de ser decode em 64
-
-            //String criptogramaDecoded = Utils.desencriptarB64();
-
-            //textoClaro = /*TEXTOCLARO*/ - /*ENDTEXTOCLARO*/
-            //Chave publica cc = /*ASS*/ - /*ENDASS*/
-            //Certificado cc = /*CERT*/ - /*ENDCERT*/
-            //validar(textoClaro, Chave publica cc, Certificado cc )
-
-//            // Parse to Json the LicençaDados class.
-//            ObjectMapper mapper = new ObjectMapper();
-//            LicencaDadosJson ldj = mapper.reader(texto,LicencaDadosJson.class);
-//            ldj.getDadosClass();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,6 +89,46 @@ public class License {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private static String insereValidade(String jsonDecoded){
+        // Parse to Json the LicençaDados class.
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            LicencaDadosJson ldj = mapper.readValue(jsonDecoded, LicencaDadosJson.class);
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String start = df.format(cal.getTime());
+            cal.add(Calendar.YEAR, 1);
+            String end = df.format(cal.getTime());
+            ldj.setInicioValidadeLicenca(start);
+            ldj.setFimValidadeLicenca(end);
+            ldj.getDadosClass();
+
+            return mapper.writeValueAsString(ldj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static void gerarLic(String jsonDados, byte[] assinatura, String certificado){
+
+        //B64 jsonDados
+        String jsonDadosEncoded = Base64.getEncoder().encodeToString(jsonDados.getBytes(StandardCharsets.UTF_8));
+
+        // E
+
+        //criptograma tem de ser decode em 64
+
+        //String criptogramaDecoded = Utils.desencriptarB64();
+
+        //textoClaro = /*TEXTOCLARO*/ - /*ENDTEXTOCLARO*/
+        //Chave publica cc = /*ASS*/ - /*ENDASS*/
+        //Certificado cc = /*CERT*/ - /*ENDCERT*/
+        //validar(textoClaro, Chave publica cc, Certificado cc )
+
 
     }
 }

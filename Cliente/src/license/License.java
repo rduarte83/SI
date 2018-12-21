@@ -71,8 +71,6 @@ public class License {
         }
     }
 
-
-
     /*
         Este m´etodo deve apresentar uma interface
         (da forma mais adequada `a aplica¸c˜ao, o que pode utilizar o stdout

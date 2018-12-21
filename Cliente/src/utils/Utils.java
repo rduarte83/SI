@@ -139,5 +139,19 @@ public class Utils {
         return new DadosMaquina(Utils.getMB(), Utils.getCPU(), Utils.getNW(), Utils.getGC());
     }
 
+    // time.nist.gov
+    /*
+    public static final String TIME_SERVER = "time-a.nist.gov";
+
+public static void main(String[] args) throws Exception {
+    NTPUDPClient timeClient = new NTPUDPClient();
+    InetAddress inetAddress = InetAddress.getByName(TIME_SERVER);
+    TimeInfo timeInfo = timeClient.getTime(inetAddress);
+    long returnTime = timeInfo.getReturnTime();
+    Date time = new Date(returnTime);
+    System.out.println("Time from " + TIME_SERVER + ": " + time);
+}
+     */
+
 
 }

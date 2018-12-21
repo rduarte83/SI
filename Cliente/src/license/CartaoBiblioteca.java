@@ -128,12 +128,15 @@ public class CartaoBiblioteca {
             String resposta =  "/*TEXTOCLARO*/";
             resposta+= stringB64;
             resposta+= "/*ENDTEXTOCLARO*/";
-            resposta+= "/ASS/";
+            resposta+= "/*ASS*/";
             resposta+= textoSignB64;
             resposta+= "/*ENDASS*/";
             resposta+= "/*CERT*/";
-            resposta+= textoCertB64;
+            resposta+= "-----BEGIN CERTIFICATE-----\n"+textoCertB64+"-----END CERTIFICATE-----";
             resposta+= "/*ENDCERT*/";
+
+            System.out.println("sign..."+textoSignB64);
+            System.out.println("signString..."+new String ( buffSign, StandardCharsets.UTF_8));
 
 
             return Base64.getEncoder().encodeToString(resposta.getBytes(StandardCharsets.UTF_8));

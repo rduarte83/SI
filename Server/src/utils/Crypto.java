@@ -13,6 +13,36 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class Crypto {
+
+    public static byte[] encriptarTudo(String plainText, String publicKey)
+    {
+        String resposta = "";
+        //Create Keys
+        String symKey = createSymKey();
+
+        System.out.println("SymKey: "+symKey);
+        System.out.println("TClaro: "+ plainText);
+
+        //Encoding
+        byte[] encodedKey = Base64.getDecoder().decode(symKey);
+        SecretKey symKeyDec = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
+
+        //Encrypt sym AES
+        byte [] symText = encryptAES(symKeyDec , plainText);
+        System.out.println("TCifrado: "+symText);
+
+        resposta += Base64.getEncoder().encodeToString(symText);
+
+        resposta += "\n";
+
+        //Encrypt Assym RSA
+        byte[] encryptedKey = encryptRSA(symKeyDec, loadPublicKey(publicKey));
+        System.out.println("encryptedKey: "+encryptedKey);
+
+        resposta += Base64.getEncoder().encodeToString(encryptedKey);
+        return Base64.getEncoder().encode(resposta.getBytes(StandardCharsets.UTF_8));
+    }
+
     public static String desencriptar(PrivateKey privateKey, byte[] byteCipherText, byte[] encryptedKey) {
         try {
             //On the client side, decrypt symmetric key using RSA private key

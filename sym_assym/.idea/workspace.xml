@@ -2,56 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8f6dbf8-e996-4d10-a5b7-ffad20681aac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Cliente/.idea/artifacts/Cliente_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/src/utils/Crypto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/artifacts/Client_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/com_fasterxml_jackson_core_jackson_annotations_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/com_fasterxml_jackson_core_jackson_core_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/com_fasterxml_jackson_core_jackson_databind_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/org_jhardware_jHardware_0_8_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/libraries/pteidlibj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/153435623.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/Client.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/privateKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/publicKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/text.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/text_decrypted.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/KeyPair/text_encrypted.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/module_project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/project.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/Run.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/app/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/keys/privateKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/keys/publicKey" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/license/CartaoBiblioteca.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/license/DadosMaquina.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/license/LicencaDados.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/license/License.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Assimetrico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Simetrico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/src/utils/Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/teste-c.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project/teste.dat" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/.idea/libraries/pteidlibj.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/src/License/CartaoBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/153435623.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/153435623.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/src/license/CartaoBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/src/license/CartaoBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/src/license/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/src/license/License.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Cliente/src/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Cliente/src/utils/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/Dat/153435623.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Dat/153435623.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/License/License.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/License/License.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Utils/Assimetrico.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/utils/Assimetrico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Utils/Simetrico.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/utils/Simetrico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/utils/Crypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/utils/Crypto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publicKeySign" beforeDir="false" afterPath="$PROJECT_DIR$/publicKeySign" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -206,7 +169,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545350919233" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545360098949" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -250,12 +213,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1545263024977</updated>
-      <workItem from="1545342358184" duration="5232000" />
+      <workItem from="1545342358184" duration="5831000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5232000" />
+    <option name="totallyTimeSpent" value="5831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
