@@ -1,5 +1,4 @@
-package utils;
-
+package license;
 
 import license.LicencaDados;
 
@@ -17,7 +16,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-public class SignVerify {
+public class Assinatura{
 
     public static void generateNewAsymKeys() {
         try {
@@ -158,7 +157,7 @@ public class SignVerify {
         return null;
     }
 
-    public static boolean verify(String plainText, String signature, PublicKey publicKey) {
+    public static boolean verifica(String plainText, String signature, PublicKey publicKey) {
         Signature publicSignature = null;
         try {
             publicSignature = Signature.getInstance("SHA256withRSA");
@@ -177,4 +176,5 @@ public class SignVerify {
         }
         return false;
     }
+
 }

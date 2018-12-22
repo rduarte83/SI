@@ -2,6 +2,7 @@ package License;
 
 import pt.gov.cartaodecidadao.*;
 
+import javax.security.auth.x500.X500Principal;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
@@ -9,7 +10,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.Base64;
+import java.util.*;
 
 public class CartaoBiblioteca {
 
@@ -81,73 +82,50 @@ public class CartaoBiblioteca {
         return null;
     }
 
-    public static void validarAssinatura (String fichTClaro, String fichAssinatura, String fichCert) {
+    public static boolean validarAssinatura(String textoEmClaro, byte[] assinatura, String certificado) {
         try {
-            InputStream is = new FileInputStream(fichCert);
+            Map<X500Principal, Set<X509Certificate>> subjectToCaCerts;
 
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
 
-            X509Certificate xCert = (X509Certificate)cf.generateCertificate(is);
-
-            PublicKey pbk = xCert.getPublicKey();
-
-            FileInputStream sign = new FileInputStream(fichAssinatura);
-            byte[] buffSign = new byte[(int)sign.available()];
-            sign.read(buffSign);
-
-            FileInputStream tClaro = new FileInputStream(fichTClaro);
-            byte[] buffTClaro = new byte[(int)tClaro.available()];
-            tClaro.read(buffTClaro);
-
-            Signature sg = Signature.getInstance("SHA256withRSA");
-            sg.initVerify(pbk);
-            sg.update(buffTClaro);
-
-            boolean verifica = sg.verify(buffSign);
-            if (verifica) {
-                System.out.println("Assinatura confere");
-            } else {
-                System.out.println("ASSINATURA NÃO CONFERE!!!");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (SignatureException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public static boolean validarAssinatura2 (String textoEmClaro, byte[] assinatura, String certificado) {
-        try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             byte[] byteCert = certificado.getBytes(StandardCharsets.UTF_8);
-            InputStream is = new ByteArrayInputStream(byteCert);
 
             X509Certificate xCert = (X509Certificate)cf.generateCertificate(new ByteArrayInputStream(byteCert));
 
+            //Verifica a validade do certificado
+            Date d = new Date();
+            if (d.compareTo(xCert.getNotBefore())!= 1 && d.compareTo(xCert.getNotAfter())!= -1) { return false; }
+
+            //Verifica raiz de confiança
+//            subjectToCaCerts = new LinkedHashMap<>();
+//            X500Principal issuer = xCert.getIssuerX500Principal();
+//            Set<X509Certificate> subjectCaCerts = subjectToCaCerts.get(issuer);
+//
+//            if ( subjectCaCerts != null )
+//                for (X509Certificate caCert : subjectCaCerts) {
+//                    PublicKey publicKey = caCert.getPublicKey();
+//                    try {
+//                        xCert.verify(publicKey);
+//                    } catch (NoSuchProviderException | NoSuchAlgorithmException | InvalidKeyException | SignatureException | CertificateException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+
             PublicKey pbk = xCert.getPublicKey();
+            //xCert.verify(pbk);
+
             byte[] buffSign = assinatura;
             byte[] byteTClaro = textoEmClaro.getBytes(StandardCharsets.UTF_8);
 
+            //Verifica assinatura
             Signature sg = Signature.getInstance("SHA256withRSA");
             sg.initVerify(pbk);
             sg.update(byteTClaro);
 
             boolean verifica = sg.verify(buffSign);
             return verifica;
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (SignatureException e) {
+
+        } catch (CertificateException | NoSuchAlgorithmException | InvalidKeyException | SignatureException e) {
             e.printStackTrace();
         }
         return false;

@@ -1,9 +1,8 @@
-package utils;
+package license;
 
-import license.DadosMaquina;
 import org.jutils.jhardware.HardwareInfo;
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.*;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
@@ -137,6 +136,33 @@ public class Utils {
 
     public static DadosMaquina getSystemInfo(){
         return new DadosMaquina(Utils.getMB(), Utils.getCPU(), Utils.getNW(), Utils.getGC());
+    }
+
+    public static byte[] getFileInBytes(File f) throws IOException {
+        FileInputStream fis = new FileInputStream(f);
+        byte[] fbytes = new byte[(int) f.length()];
+        fis.read(fbytes);
+        fis.close();
+        return fbytes;
+    }
+
+    public static String[] extrairLinhas(String texto) throws IOException {
+        LineNumberReader reader = new LineNumberReader(new StringReader(texto));
+        String[] lines = texto.split("\n");
+        String currentLine = null;
+        String[] linhas = new String[3];
+        while ((currentLine = reader.readLine()) != null) {
+            if (reader.getLineNumber() == 1) {
+                linhas[0] = currentLine;
+            }
+            if (reader.getLineNumber() == 2) {
+                linhas[1] = currentLine;
+            }
+            if (reader.getLineNumber() == 3){
+                linhas[2] = currentLine;
+            }
+        }
+        return linhas;
     }
 
     // time.nist.gov

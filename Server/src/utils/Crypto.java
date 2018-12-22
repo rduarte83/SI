@@ -20,24 +20,18 @@ public class Crypto {
         //Create Keys
         String symKey = createSymKey();
 
-        System.out.println("SymKey: "+symKey);
-        System.out.println("TClaro: "+ plainText);
-
         //Encoding
         byte[] encodedKey = Base64.getDecoder().decode(symKey);
         SecretKey symKeyDec = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
 
         //Encrypt sym AES
         byte [] symText = encryptAES(symKeyDec , plainText);
-        System.out.println("TCifrado: "+symText);
 
         resposta += Base64.getEncoder().encodeToString(symText);
-
         resposta += "\n";
 
         //Encrypt Assym RSA
         byte[] encryptedKey = encryptRSA(symKeyDec, loadPublicKey(publicKey));
-        System.out.println("encryptedKey: "+encryptedKey);
 
         resposta += Base64.getEncoder().encodeToString(encryptedKey);
         return Base64.getEncoder().encode(resposta.getBytes(StandardCharsets.UTF_8));
@@ -60,7 +54,6 @@ public class Crypto {
             String plainText = new String(bytePlainText);
 
             return plainText;
-
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (BadPaddingException e) {
@@ -112,7 +105,6 @@ public class Crypto {
             X509EncodedKeySpec spec = new X509EncodedKeySpec(data);
             KeyFactory kf = KeyFactory.getInstance("RSA");
             PublicKey pubKey = kf.generatePublic(spec);
-            System.out.println("PublicKey Original: "+pubKey);
             return pubKey;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -129,7 +121,6 @@ public class Crypto {
             PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(data);
             KeyFactory kf = KeyFactory.getInstance("RSA");
             PrivateKey privKey = kf.generatePrivate(spec);
-            System.out.println("PrivateKey Original: "+privKey);
             return privKey;
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -145,7 +136,6 @@ public class Crypto {
             Cipher aesCipher = Cipher.getInstance("AES");
             aesCipher.init(Cipher.ENCRYPT_MODE, secKey);
             byte[] byteCipherText = aesCipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
-
             return byteCipherText;
 
         } catch (NoSuchAlgorithmException e) {

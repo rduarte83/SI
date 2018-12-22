@@ -2,10 +2,7 @@ package license;
 
 import pt.gov.cartaodecidadao.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.Certificate;
@@ -135,10 +132,6 @@ public class CartaoBiblioteca {
             resposta+= "-----BEGIN CERTIFICATE-----\n"+textoCertB64+"-----END CERTIFICATE-----";
             resposta+= "/*ENDCERT*/";
 
-            System.out.println("sign..."+textoSignB64);
-            System.out.println("signString..."+new String ( buffSign, StandardCharsets.UTF_8));
-
-
             return Base64.getEncoder().encodeToString(resposta.getBytes(StandardCharsets.UTF_8));
         } catch (SignatureException e) {
             e.printStackTrace();
@@ -201,95 +194,4 @@ public class CartaoBiblioteca {
         }
 
     }
-
-
-
-   /* public static PTEID_RSAPublicKey GetCardAuthenticationKey(){
-        PTEID_RSAPublicKey key = null;
-
-        if (context != null) {
-            try {
-                PTEID_EIDCard card = context.getEIDCard();
-                PTEID_PublicKey cardKey = card.getID().getCardAuthKeyObj();
-                key = new PTEID_RSAPublicKey();
-                key.exponent = new byte[(int) cardKey.getCardAuthKeyExponent().Size()];
-                key.modulus = new byte[(int) cardKey.getCardAuthKeyModulus().Size()];
-                // Create the Long variable.
-                Long longVarMod = cardKey.getCardAuthKeyModulus().Size();
-                Long longVarExp = cardKey.getCardAuthKeyExponent().Size();
-
-                // Convert Long to String.
-                String stringVarMod = longVarMod.toString();
-                String stringVarExp = longVarExp.toString();
-
-                System.out.println("stringVarMod:"+stringVarMod);
-                System.out.println("stringVarExp:"+stringVarExp);
-                System.out.println(":------------:");
-
-                // Convert to BigInteger. The BigInteger(byte[] val) expects a binary representation of
-                // the number, whereas the BigInteger(string val) expects a decimal representation.
-                BigInteger bigIntVarMod = new BigInteger( stringVarMod );
-                BigInteger bigIntVarExp = new BigInteger( stringVarExp );
-
-                BigInteger bigIntMod = new BigInteger(stringVarMod, 16);
-                BigInteger bigIntExp = new BigInteger(stringVarExp, 16);
-
-                System.out.println("bigIntVarMod:"+bigIntVarMod);
-                System.out.println("bigIntVarExp:"+bigIntVarExp);
-                System.out.println(":------------:");
-                System.out.println("bigIntMod:"+bigIntMod);
-                System.out.println("bigIntExp:"+bigIntExp);
-
-                // See if the conversion worked. But the output from this step is not
-                // anything like the original value I put into longVar
-
-                RSAPublicKeySpec spec = new RSAPublicKeySpec(bigIntMod, bigIntExp);
-                KeyFactory factory = KeyFactory.getInstance("RSA");
-                PublicKey pub = factory.generatePublic(spec);
-
-                System.out.println("PK-"+pub.getEncoded());
-                //verifier.update(url.getBytes("UTF-8")); // Or whatever interface specifies.
-
-
-//                Array.Copy(cardKey.getCardAuthKeyExponent().GetBytes(), 0, key.exponent, 0, key.exponent.Length);
-//                Array.Copy(cardKey.getCardAuthKeyModulus().GetBytes(), 0, key.modulus, 0, key.modulus.Length);
-            }
-            catch (PTEID_Exception ex)
-            {
-                try {
-                    throw new PteidException(ex.GetError());
-                } catch (PteidException e) {
-                    e.printStackTrace();
-                }
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (InvalidKeySpecException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return key;
-    }*/
-
-
-//    public static PteidRSAPublicKey GetCVCRoot(){
-//        PteidRSAPublicKey key = null;
-//
-//        if (readerContext != null) {
-//            try {
-//                PTEID_PublicKey rootCAKey = idCard.getRootCAPubKey();
-//                key = new PteidRSAPublicKey();
-//                key.exponent = new byte[(int) rootCAKey.getCardAuthKeyExponent().Size()];
-//                key.modulus = new byte[(int) rootCAKey.getCardAuthKeyModulus().Size()];
-//                Array.Copy(rootCAKey.getCardAuthKeyExponent().GetBytes(), 0, key.exponent, 0, key.exponent.Length);
-//                Array.Copy(rootCAKey.getCardAuthKeyModulus().GetBytes(), 0, key.modulus, 0, key.modulus.Length);
-//            }
-//            catch (PTEID_Exception ex)
-//            {
-//                throw new PteidException(ex.GetError());
-//            }
-//        }
-//
-//        return key;
-//    }
 }

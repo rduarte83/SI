@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jackson-annotations-2.9.0-sources" level="project" />
     <orderEntry type="library" name="pteidlibj" level="project" />
+    <orderEntry type="library" name="org.jline:jline:3.9.0" level="project" />
   </component>
 </module>

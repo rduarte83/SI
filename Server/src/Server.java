@@ -1,36 +1,56 @@
 import License.License;
 
+import java.util.Scanner;
+
 public class Server {
 
-    // Ter Pasta Lic e pasta Dat
-    // Recolher dados do ficheiro .dat
-    // Alterar para o numero id correspondente ao ficheiro.
-    // Desencriptar
-    // Gerar .lic
-    // Encriptar
+    public static final String ANSI_RESET = "\u001b[0m";
+    public static final String ANSI_RED = "\033[31;1m";
+    public static final String ANSI_GREEN = "\u001b[032m";
+    public static final String ANSI_YELLOW = "\u001b[033m";
+
     public static void main ( String[] args ){
-        //License.gerarChavesAsimetricas();
-        //License.decifrar("153435623");
-
-        //License.PKS.getBytes(StandardCharsets.UTF_8);
-
-
-        //byte[] bPK = License.PKS.getBytes(StandardCharsets.UTF_8);
-        License.decifrar("153435623");
+        menu(args);
     }
 
+    public static void menu(String[] args) {
+
+        if ( args.length < 1 ){
+            showHelp();
+            return;
+        }
 
 
-
-    // Criar Licença
-    public void criarLicenca(){
-
+        int index = 0;
+        for (String arg : args) {
+            // Comando Gerar
+            switch (arg) {
+                case "-gerar":
+                    if (index + 1 < args.length) {
+                        String filename = args[index + 1];
+                        License.decifrar(filename);
+                    }else {
+                        System.out.println(ANSI_RED+"Insira o nome do ficheiro."+ANSI_RESET);
+                    }
+                    return;
+                case "-ler":  // Comando Ler
+                    String filename = args[index + 1];
+                    //License.decifrar(filename);
+                    return;
+                case "-help":
+                    showHelp();
+                    return;
+            }
+            index++;
+        }
+        System.out.println(ANSI_RED+"Comando inválido.."+ANSI_RESET);
+        showHelp();
     }
 
-    // Verificar Licenca
-
-
-    //
-
-
+    private static void showHelp(){
+        System.out.println(ANSI_YELLOW+"Pode usar os seguintes comandos:"+ANSI_RESET);
+        System.out.println(ANSI_YELLOW+"-gerar {nome do ficheiro dat} ( tem de estar na pasta Dat! )"+ANSI_RESET);
+        System.out.println(ANSI_YELLOW+"-ler {nome do ficheiro dat}"+ANSI_RESET);
+        System.out.println(ANSI_YELLOW+"-help ( para obter a lista de comandos."+ANSI_RESET);
+    }
 }

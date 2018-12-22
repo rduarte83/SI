@@ -24,37 +24,37 @@ class DadosMaquinaDeserializer extends StdDeserializer<DadosMaquina> {
             throws IOException, JsonProcessingException {
         JsonNode node = jp.getCodec().readTree(jp);
         //System.out.println(node.toString());
-        String bios =  node.get("bios").asText();
+        String mb =  node.get("mb").asText();
         String cpu =  node.get("cpu").asText();
         String mac = node.get("mac").asText();
         String gc =  node.get("gc").asText();
 
-        return new DadosMaquina(bios, cpu, mac, gc);
+        return new DadosMaquina(mb, cpu, mac, gc);
     }
 }
 
 @JsonDeserialize(using = DadosMaquinaDeserializer.class)
 public class DadosMaquina {
-    private String bios;
+    private String mb;
     private String cpu;
     private String mac;
     private String gc;
 
     // Construtor
 
-    public DadosMaquina(String bios, String cpu, String mac, String gc) {
-        this.bios = bios;
+    public DadosMaquina(String mb, String cpu, String mac, String gc) {
+        this.mb = mb;
         this.cpu = cpu;
         this.mac = mac;
         this.gc = gc;
     }
 
-    public String getBios() {
-        return bios;
+    public String getMb() {
+        return mb;
     }
 
-    public void setBios(String bios) {
-        this.bios = bios;
+    public void setMb(String mb) {
+        this.mb = mb;
     }
 
     public String getCpu() {
