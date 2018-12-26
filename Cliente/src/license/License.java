@@ -82,11 +82,10 @@ public class License {
 
     /**
      * Método invocado no início da execução do programa.
-     * Valida a correcta execução da aplicação atual.
-     * Verifica o ficheiro de licença (.lic).
-     * Desencripta o ficheiro e compara os dados da mesma com as do utilizador e equipamento actual.
+     * <p>Valida a correcta execução da aplicação atual.
+     * <p>Verifica o ficheiro de licença (.lic).
+     * <p>Desencripta o ficheiro e compara os dados da mesma com as do utilizador e equipamento actual.
      * @return True se licença válida, senão False
-     * @see License
      */
 
     // Caso False GerarDados.
@@ -132,8 +131,8 @@ public class License {
 
     /**
      * Inicia o processo de registo de uma nova licenca pedindo o email ao utilizador
-     * e recolhe dados do utilizador e da máquina
-     * gravando á posterior num ficheiro .dat
+     * <p>e recolhe dados do utilizador e da máquina
+     * <p>gravando á posterior num ficheiro .dat
      * @return True se registo completa com sucesso, False em caso de erro
      */
     public Boolean startRegistration(){
@@ -198,7 +197,7 @@ public class License {
 
     /**
      * Apresenta os dados da licença, no caso de existir.
-     * Caso contrário, apresenta a informação de que a aplicação não se encontra registada.
+     * <p>Caso contrário, apresenta a informação de que a aplicação não se encontra registada.
      */
     public void showLicenseInfo(){
         // Mostrar os dados da Licença se Houver!
@@ -251,7 +250,7 @@ public class License {
 
     /**
      * Verificar se os dados da maquina coincidem com os da licença
-     * Tem uma margem de erro (delta) que permite que até um componente seja alterado
+     * <p>Tem uma margem de erro (delta) que permite que até um componente seja alterado
      * @return True se dados coincidem, False em caso contrário
      */
     private Boolean verificarDadosMaquina()
@@ -270,6 +269,7 @@ public class License {
 
     /**
      * Verifica se o programa foi alterado
+     * <p>Compara o tamanho do programa com o valor armazenado no ficheiro de licença
      * @return True se intacto, false se alterado
      */
     private Boolean verificarProgramaAlterado(){

@@ -11,6 +11,15 @@ import java.security.cert.CertificateException;
 import java.util.Base64;
 
 public class CartaoBiblioteca {
+
+    static {
+        try {
+            System.loadLibrary("pteidlibj");
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("Native code library failed to load. \n" + e);
+            System.exit(1);
+        }
+    }
     static PTEID_ReaderContext context;
     final static String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
 
@@ -49,7 +58,7 @@ public class CartaoBiblioteca {
     }
 
     /**
-     * Recolhos os dados do cartão de cidadão
+     * Recolhe os dados do cartão de cidadão
      */
     public static void getCartaoInfo(){
         try {
@@ -58,7 +67,6 @@ public class CartaoBiblioteca {
             ks.load(null, null);
 
             if(isCardPresent()){
-                System.loadLibrary("pteidlibj");
                 PTEID_EIDCard card = context.getEIDCard();
                 PTEID_EId eid = card.getID();
 
@@ -88,14 +96,13 @@ public class CartaoBiblioteca {
 
     /**
      * Assina um texto digitalmente com o cartão de cidadão
-     * Grava o texto em claro, a assinatura e o certificado num ficheiro
+     * <p>Grava o texto em claro, a assinatura e o certificado num ficheiro
      * @param stringB64 Texto a assinar
-     * @return
+     * @return texto em claro+assinatura+certificado em Base64
      */
     public static String assinar(String stringB64) {
         try {
             String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
-            Provider[] provs = Security.getProviders();
             Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);
