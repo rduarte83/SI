@@ -141,7 +141,6 @@ public class License {
         //B64 jsonDados
         String jsonDadosEncoded =  "/*TEXTOCLARO*/"+ Base64.getEncoder().encodeToString(jsonDados.getBytes(StandardCharsets.UTF_8)) +"/*ENDTEXTOCLARO*/";
 
-        // TODO: GERAR -> PUBLIC KEY CLIENTE
         byte[] b = Crypto.encriptarTudo(jsonDadosEncoded, LicencaDados.getChavePublica());
         String dadosEncriptados = new String ( b, StandardCharsets.UTF_8);
         // Encriptar
