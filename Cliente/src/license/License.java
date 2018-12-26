@@ -253,14 +253,16 @@ public class License {
     // Verificar se os dados da Maquina Coincidem
     private Boolean verificarDadosMaquina()
     {
+        int delta = 0;
         // Desencriptar dados vindos do ficheiro e colocar na variavel ficheiro.
         DadosMaquina ficheiro = Crypto.ldjLic.getDadosMaquina();
         DadosMaquina atual = Utils.getSystemInfo();
+        if ( !ficheiro.getMb().equals(atual.getMb()) ) delta++;
+        if ( !ficheiro.getCpu().equals(atual.getCpu()) ) delta++;
+        if ( !ficheiro.getMac().equals(atual.getMac())) delta++;
+        if ( !ficheiro.getGc().equals(atual.getGc()) ) delta++;
 
-        return ficheiro.getMb().equals(atual.getMb()) &&
-                ficheiro.getCpu().equals(atual.getCpu()) &&
-                ficheiro.getMac().equals(atual.getMac()) &&
-                ficheiro.getGc().equals(atual.getGc());
+        return delta < 2;
     }
 
     // Verificar a varacidade do programa.
