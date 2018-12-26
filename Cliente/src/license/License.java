@@ -150,9 +150,12 @@ public class License {
         // Nome, Email, Chave Publica CC, nº Identificação Civil
         CartaoBiblioteca.getCartaoInfo();
 
+        System.out.print(ANSI_YELLOW+"A Obter dados da maquina..."+ANSI_RESET);
         // Dados da MaquinaString BIOS, String CPU, String MAC, String GC
         DadosMaquina dadosMaquina = Utils.getSystemInfo();
         LicencaDados.setDadosMaquina(dadosMaquina);
+        System.out.println(ANSI_GREEN+"OK"+ANSI_RESET);
+
 
         // NomeDaApp e Versão
         LicencaDados.setNomeDaApp(nomeDaApp);
