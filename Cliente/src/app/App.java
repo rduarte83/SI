@@ -12,6 +12,9 @@ public class App {
         System.out.println("Hello World.");
     }
 
+    /**
+     * Inicialização da biblioteca de controlo de execucão.
+     **/
     private static void init(){
         License lic = new License("HelloWorld", "1.0.0");
     }

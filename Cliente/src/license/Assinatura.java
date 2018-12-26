@@ -1,23 +1,22 @@
 package license;
 
-import license.LicencaDados;
-
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class Assinatura{
 
+    /**
+     * Obtém a chave public e privado do Keypair gerado pela função createAsymKeys()
+     * Grava as chaves para ficheiros
+     */
     public static void generateNewAsymKeys() {
         try {
             KeyPair pair = createAsymKeys();
@@ -32,41 +31,24 @@ public class Assinatura{
         }
     }
 
-    public static String hashMD5(String text) {
-        try {
-            // Static getInstance method is called with hashing MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
-
-            // digest() method is called to calculate message digest
-            //  of an input digest() return array of byte
-            byte[] messageDigest = md.digest(text.getBytes());
-
-            // Convert byte array into signum representation
-            BigInteger no = new BigInteger(1, messageDigest);
-
-            // Convert message digest into hex value
-            String hashtext = no.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
+    /**
+     * Cria um par de chaves com um 1024bytes de tamanho 1024 com base no algoritmo RSA
+     * @return KeyPair par de chaves
+     * @throws NoSuchAlgorithmException
+     * @see KeyPair
+     */
     public static KeyPair createAsymKeys() throws NoSuchAlgorithmException {
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
         kpg.initialize(1024);
         KeyPair pair = kpg.generateKeyPair();
-//        PrivateKey privateKey = pair.getPrivate();
-//        PublicKey publicKey = pair.getPublic();
         return pair;
     }
 
+    /**
+     * Grava a chave pública para o ficheiro "publicKeySign"
+     * @param publicKey chave pública
+     * @see PublicKey
+     */
     public static void savePubKeyToFile(PublicKey publicKey){
         try {
             byte[] key = publicKey.getEncoded();
@@ -80,6 +62,11 @@ public class Assinatura{
         }
     }
 
+    /**
+     * Grava a chave privada para o ficheiro "privateKeySign"
+     * @param privateKey chave privada
+     * @see PrivateKey
+     */
     public static void savePriKeytoFile(PrivateKey privateKey){
         try {
             byte[] key = privateKey.getEncoded();
@@ -93,33 +80,12 @@ public class Assinatura{
         }
     }
 
-    public static PublicKey loadPubKeyFromFile(String fileName){
-        try {
-            if(fileName.length()<1) fileName = "publicKeySign";
-
-            FileInputStream fis = new FileInputStream(fileName);
-            byte[] encKey = new byte[fis.available()];
-            fis.read(encKey);
-            fis.close();
-
-            X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            KeyFactory kf = KeyFactory.getInstance("RSA");
-            PublicKey pubKey = kf.generatePublic(pubKeySpec);
-
-            return pubKey;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    /**
+     * Lê a chave privada dum ficheiro
+     * @param filename nome do ficheiro
+     * @return PrivateKey chave privada contida no ficheiro
+     * @see PrivateKey
+     */
     public static PrivateKey loadPriKeyFromFile(String filename) {
         try {
             if(filename.length()<1) filename = "privateKeySign";
@@ -138,25 +104,13 @@ public class Assinatura{
         return null;
     }
 
-    public static String sign(String plainText, PrivateKey privateKey) {
-        try {
-            Signature privateSignature = Signature.getInstance("SHA256withRSA");
-            privateSignature.initSign(privateKey);
-            privateSignature.update(plainText.getBytes(StandardCharsets.UTF_8));
-            byte[] signature = privateSignature.sign();
-
-            return Base64.getEncoder().encodeToString(signature);
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (SignatureException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    /**
+     * Verifica a assinatura
+     * @param plainText Texto em claro
+     * @param signature Assinatura
+     * @param publicKey Chave pública
+     * @return True se assinatura válida, False em caso contrário
+     */
     public static boolean verifica(String plainText, String signature, PublicKey publicKey) {
         Signature publicSignature = null;
         try {

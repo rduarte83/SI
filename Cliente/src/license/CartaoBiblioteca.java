@@ -2,28 +2,22 @@ package license;
 
 import pt.gov.cartaodecidadao.*;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.Base64;
 
 public class CartaoBiblioteca {
-    static {
-        try {
-            System.loadLibrary("pteidlibj");
-        } catch (UnsatisfiedLinkError e) {
-            System.err.println("Native code library failed to load. \n" + e);
-            System.exit(1);
-        }
-    }
-
     static PTEID_ReaderContext context;
     final static String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
 
+    /**
+     * Verifica se existe algum leitor de CC válido
+     * @return True se existir, False em caso contrário
+     */
     public static boolean isCardReaderPresent() {
         PTEID_ReaderSet readerSet;
         try {
@@ -37,6 +31,10 @@ public class CartaoBiblioteca {
         } return false;
     }
 
+    /**
+     * Verifica se existe algum CC inserido no leitor
+     * @return True se existir, False em caso contrário
+     */
     public static boolean isCardPresent(){
         try {
             PTEID_EIDCard card;
@@ -50,30 +48,24 @@ public class CartaoBiblioteca {
         return false;
     }
 
-    public static String getCartaoInfo(){
-
-
+    /**
+     * Recolhos os dados do cartão de cidadão
+     */
+    public static void getCartaoInfo(){
         try {
             Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);
 
             if(isCardPresent()){
+                System.loadLibrary("pteidlibj");
                 PTEID_EIDCard card = context.getEIDCard();
                 PTEID_EId eid = card.getID();
-                PTEID_PublicKey pk = eid.getCardAuthKeyObj();
-
-                Certificate cert = ks.getCertificate(alias);
-                PublicKey key = cert.getPublicKey();
-                byte[] buffCert = cert.getEncoded();
-
-                System.loadLibrary("pteidlibj");
 
                 // Pôr dados na nossa classe.
                 LicencaDados.setPrimeiroNome(eid.getGivenName());
                 LicencaDados.setUltimoNome(eid.getSurname());
                 LicencaDados.setIdentificacaoCivil(eid.getCivilianIdNumber());
-                //LicencaDados.setChavePublica(Base64.getEncoder().encodeToString(key.getEncoded()));
             }
         } catch (PTEID_Exception e) {
             e.printStackTrace();
@@ -92,17 +84,19 @@ public class CartaoBiblioteca {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        return "";
     }
 
+    /**
+     * Assina um texto digitalmente com o cartão de cidadão
+     * Grava o texto em claro, a assinatura e o certificado num ficheiro
+     * @param stringB64 Texto a assinar
+     * @return
+     */
     public static String assinar(String stringB64) {
         try {
             String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
             Provider[] provs = Security.getProviders();
             Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
-
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);
 
@@ -113,7 +107,7 @@ public class CartaoBiblioteca {
             Signature sg = Signature.getInstance("SHA256withRSA", prov);
             sg.initSign(pk);
 
-            sg.update(byteTextoEncriptado); // Quando assina com private Key...
+            sg.update(byteTextoEncriptado); // Assina com private Key
             byte[] buffSign = sg.sign();
             String textoSignB64 = Base64.getEncoder().encodeToString(buffSign);
 
@@ -151,47 +145,5 @@ public class CartaoBiblioteca {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static void validarAssinatura (String fichTClaro, String fichAssinatura, String fichCert) {
-        try {
-            InputStream is = new FileInputStream(fichCert);
-
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-
-            X509Certificate xCert = (X509Certificate)cf.generateCertificate(is);
-
-            PublicKey pbk = xCert.getPublicKey();
-
-            FileInputStream sign = new FileInputStream(fichAssinatura);
-            byte[] buffSign = new byte[(int)sign.available()];
-            sign.read(buffSign);
-
-            FileInputStream tClaro = new FileInputStream(fichTClaro);
-            byte[] buffTClaro = new byte[(int)tClaro.available()];
-            tClaro.read(buffTClaro);
-
-            Signature sg = Signature.getInstance("SHA256withRSA");
-            sg.initVerify(pbk);
-            sg.update(buffTClaro);
-
-            boolean verifica = sg.verify(buffSign);
-            if (verifica) {
-                System.out.println("Assinatura confere");
-            } else {
-                System.out.println("ASSINATURA NÃO CONFERE!!!");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (SignatureException e) {
-            e.printStackTrace();
-        }
-
     }
 }

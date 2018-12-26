@@ -20,12 +20,12 @@ public class License {
     private String versao;
     private static Boolean license = false;
 
-    /*
-        Este m´etodo corresponde
-        `a inicializa¸c˜ao da biblioteca de controlo de execu¸c˜ao. No
-        caso de uma implementa¸c˜ao orientada a objetos, este m´etodo pode
-        corresponder ao construtor.
+    /**
+     * Contructor da licença
+     * @param nomeDaApp Nome da aplicação
+     * @param versao Versão da aplicação
      */
+
     public License(String nomeDaApp, String versao){
         this.nomeDaApp = nomeDaApp;
         this.versao = versao;
@@ -80,14 +80,15 @@ public class License {
         }
     }
 
-    /*
-        Uma aplica¸c˜ao dever´a invocar este m´etodo no
-        in´ıcio da sua execu¸c˜ao e sempre que ache necess´ario. Este m´etodo dever´a
-        executar de forma r´apida e eficiente, validando a correta execu¸c˜ao da
-        aplica¸c˜ao atual. Caso se verifique que a aplica¸c˜ao executa de forma
-        autorizada, ele n˜ao dever´a imprimir qualquer valor e dever´a devolver o
-        valor True. Caso contr´ario dever´a devolver o valor False
-    */
+    /**
+     * Método invocado no início da execução do programa.
+     * Valida a correcta execução da aplicação atual.
+     * Verifica o ficheiro de licença (.lic).
+     * Desencripta o ficheiro e compara os dados da mesma com as do utilizador e equipamento actual.
+     * @return True se licença válida, senão False
+     * @see License
+     */
+
     // Caso False GerarDados.
     public Boolean isRegistered(){
         // Ler Dados do Cartão
@@ -129,12 +130,11 @@ public class License {
         }
     }
 
-    /*
-        Este m´etodo deve apresentar uma interface
-        (da forma mais adequada `a aplica¸c˜ao, o que pode utilizar o stdout
-        ou um interface gr´afico) indicando que a aplica¸c˜ao n˜ao se encontra
-        registada e possibilitando iniciar o processo de registo de uma nova
-        licen¸ca. Os detalhes sobre este processo encontram-se na subsection 1.4.
+    /**
+     * Inicia o processo de registo de uma nova licenca pedindo o email ao utilizador
+     * e recolhe dados do utilizador e da máquina
+     * gravando á posterior num ficheiro .dat
+     * @return True se registo completa com sucesso, False em caso de erro
      */
     public Boolean startRegistration(){
         Scanner in = new Scanner(System.in);
@@ -194,17 +194,11 @@ public class License {
             e.printStackTrace();
             return false;
         }
-
-        // Encriptar Dados
     }
 
-    /*
-        Esta fun¸c˜ao apresenta os dados da licen¸ca
-        atual (caso ela exista), ou informa¸c˜ao de que a aplica¸c˜ao n˜ao se encontra
-        registada. A apresenta¸c˜ao desta informa¸c˜ao, mais uma vez, dever´a ser
-        efetuada da maneira mais adequada `a aplica¸c˜ao. Para uma aplica¸c˜ao
-        de linha de comandos esta informa¸c˜ao pode ser escrita para o terminal
-        (stdout)
+    /**
+     * Apresenta os dados da licença, no caso de existir.
+     * Caso contrário, apresenta a informação de que a aplicação não se encontra registada.
      */
     public void showLicenseInfo(){
         // Mostrar os dados da Licença se Houver!
@@ -244,13 +238,22 @@ public class License {
         }
     }
 
-    // Ficheiro existe?
+    /**
+     * Verifica se o ficheiro existe
+     * @param path nome do ficheiro a verificar
+     * @return True se exister, False em caso contrário
+     */
     private Boolean fileExists(String path){
         File f = new File(path);
-        return f.exists() && !f.isDirectory(); // Se o resultado da função lógica der true ele manda true, se der false ele manda false.
+        return f.exists() && !f.isDirectory();
+        // Se o resultado da função lógica der true ele manda true, se der false ele manda false.
     }
 
-    // Verificar se os dados da Maquina Coincidem
+    /**
+     * Verificar se os dados da maquina coincidem com os da licença
+     * Tem uma margem de erro (delta) que permite que até um componente seja alterado
+     * @return True se dados coincidem, False em caso contrário
+     */
     private Boolean verificarDadosMaquina()
     {
         int delta = 0;
@@ -265,7 +268,10 @@ public class License {
         return delta < 2;
     }
 
-    // Verificar a varacidade do programa.
+    /**
+     * Verifica se o programa foi alterado
+     * @return True se intacto, false se alterado
+     */
     private Boolean verificarProgramaAlterado(){
         File f = new File("Cliente.jar");
         long size = f.length();
@@ -273,7 +279,10 @@ public class License {
         return size == sizeFromLic;
     }
 
-    // Verificar Cartão de Cidadão
+    /**
+     * Verifica se dados do cartão de cidadão coincidem com os do ficheiro de licença
+     * @return True se forem iguais, false em caso contrário
+     */
     private boolean verificarCartaoCidadao () {
         LicencaDadosJson lic = Crypto.ldjLic;
         return (LicencaDados.getPrimeiroNome().equals(lic.getPrimeiroNome()) &&
@@ -281,6 +290,10 @@ public class License {
                 LicencaDados.getIdentificacaoCivil().equals(lic.getIdentificacaoCivil()));
     }
 
+    /**
+     * Verifica se o nome e a versão da aplicação coincidem com os da licença
+     * @return True se estiver correcto, False se incorrecto
+     */
     private boolean verificaNomeVersao() {
         LicencaDadosJson lic = Crypto.ldjLic;
         return versao.equals(lic.getVersao()) && nomeDaApp.equals(lic.getNomeDaApp());
