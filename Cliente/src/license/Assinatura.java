@@ -109,7 +109,7 @@ public class Assinatura{
      * @param plainText texto em claro
      * @param signature assinatura
      * @param publicKey chave pública
-     * @return True se assinatura válida, False em caso contrário
+     * @return True se assinatura válida, False caso contrário
      */
     public static boolean verifica(String plainText, String signature, PublicKey publicKey) {
         Signature publicSignature = null;

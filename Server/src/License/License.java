@@ -1,20 +1,17 @@
 package License;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import utils.Assimetrico;
 import utils.SignVerify;
 import utils.Utils;
-
-import javax.crypto.NoSuchPaddingException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.security.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-
-import static License.Crypto.desencriptarLicencaDados;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 
 public class License {
     // Cores
@@ -28,7 +25,14 @@ public class License {
     static final String PRIVATE_KEY = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCwJ94/n0MOmV/4TNhZh5eMuxxGpdBCqenLEbbbbQJHnhZsrnJVU4FEfS2rEnJFZR/HWE5ovCjA+b8FOdY4X09CrucvzThr0Q3GuvJubaPirs9RPtAZQqbCYZW2YgW3WKgo3pBiCWAirTQ0XyH+yl1O9bvq1oNKGw1TDxdH/R2CPmFRz/VLG+VeEV50yYGD35v6JmkMfRkp+XFds2b3hM6OPDXryuBU7vZ88WQO+SUWnhwvyKNIrqu8wRyW0Nn7gXwYEXIRRtdfBDh803RLZojR1KqslMlNZpJHi/DnMZLbRe9W4VtqkN8li17byaQbEOwcPAdooU9oXLSk9w3os3r5AgMBAAECggEASWtke1nyxfvw/vlwVuhnptU5tMxZX9+XvPaWIyBtCdJ/AC85Ig0a3KPby+h1Ti0WsKxCie6agcvV7OStP3OiAmYJn2fGc1F/j2vNrW7vFoTLjc5DR7P68xtfHdP/E+rUs6wHu4Sy1+Ee2BEqhxprB4TuHLPpppJd3Fd22Z9KlESgoG5GMdsBoRecp0msoFX7URpUc8Q60auSpPbd66aXXCE1t/xvjKOO8dOAStcLPfshAYisvBEXr3CmqT4CbwzqPmpqSIznyXYCJakS/lf2WC7OES8o4rBkNvKiwTwjJ7Gr1Kox8CXQvMe2eUA+ncUwKMYaiITF06u49/dRQ5CXAQKBgQDUlXbXgr+jH1D/A/II/nzprvgVr/Xhn2qFZCTxSZi1jSRVaXA0KnHyTF+XnwoXmiPMDC46e3KyQ3WhAE469Kg9f7XDGsppk0C7ij64zonL8aU2RTmfP0mv5JAOV5BZ5ai0E9ib90GYlco+Goza9yJ0iCxXscj7sWE/t+2WMtFoGQKBgQDUIdSgO3UvImhohfkIgU/0l2YE4NQLVXO68bKlh1d7ygucOzfcACwQUEymWuPjwuC4+Dj2+FkFZkj18TUgQjVesQ6SgmQ+4CZi9jS30b8DJYwTxIgj+VnXdJ+qeri2/PkS08lgjeaXBAopo9SPM59PiBTKlA2CuwtrvoBqqmKF4QKBgAf8bXB/Ku/X11UdMtR/qvWkaxF1gMkvEfNc5b5iw2fem4TR5zMufQVbNSQfB2QHmFysAHiV9qMXwa2As2+njUJyL8Pal8wLih0BfoW2zJpqw4gcZaPD3uLKtVa0l2mpJQNO045YZZBz4BshKDV5n0O9cd0BgslhyoN4R2ajFhbRAoGAWSRuSXcy4z++SE4kPGK6yrnkcSBZevnJzEFNJSoepTJedqSb8KNR4PkdfLqtEUUPUitdJMtv/UjiWBeoj4nDC6uzx/VrUtC20NdNiAFoF1Zr6tKnsxZRnqyve+BeRuc/c53z/dMjl0pnSuBBrnuu8qjos8hLdShMwFYpeKlpBYECgYEArxjX0ZhVdVDQWetTSZEPgs2zgzrQb3lCnhG+8ui01raD+3e2hX0uP0nfvLqo7t4vbls/EsQYhj9tFL47vFv7MPoY/UGg461l6rAJcjRab0HZczW1ZSyNPm49YJi39Vu+qx38oOhdXMmSYwW/EKweEZho5+/OvDLUb67fDizTWYM=";
 
 
-    // Decifra
+    /**
+     * Trata o ficheiro separando os componentes necessários para a desencriptação
+     * <p> Chama métodos para:
+     * <p> Validar a assinatura
+     * <p> Gerar o período de validade da assinatura
+     * <p> Gerar o ficheiro de licença (.lic)
+     * @param filePath nome ficheiro a ser tratado
+     */
     public static void decifrar(String filePath) {
         try {
             System.out.print(ANSI_YELLOW + "A descodificar ficheiro..." + ANSI_RESET);
@@ -45,7 +49,6 @@ public class License {
             byte[] criptograma = Base64.getDecoder().decode(linhas[0]);
             byte[] chaveEnc = Base64.getDecoder().decode(linhas[1]);
 
-            //System.out.println("ChaveDecode:"+ new String( Utils.desencriptarB64(chaveEnc), StandardCharsets.UTF_8));
             String texto = Crypto.desencriptar(Crypto.loadPrivateKey(PRIVATE_KEY), criptograma, chaveEnc);
             String textoDecoded = new String(Base64.getDecoder().decode(texto), StandardCharsets.UTF_8);
             System.out.println(ANSI_GREEN + "OK" + ANSI_RESET);
@@ -58,7 +61,6 @@ public class License {
             byte[] assDecoded = Base64.getDecoder().decode(assEncoded);
             String certDecoded = certEncoded;
 
-            // TODO: Verificar se Certificado Valido.
             // Verificar se Assinatura Valida.
             System.out.print(ANSI_YELLOW + "A validar assinatura..." + ANSI_RESET);
             boolean isValid = CartaoBiblioteca.validarAssinatura(jsonEncoded, assDecoded, certDecoded);
@@ -67,7 +69,6 @@ public class License {
                 return;
             }
             System.out.println(ANSI_GREEN + "OK" + ANSI_RESET);
-
 
             // Inserir validade do ficheiro
             String finalLicense = insereValidade(jsonDecoded);
@@ -85,33 +86,16 @@ public class License {
 
             // Gerar .LIC
             gerarLic(finalLicense);
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void gerarChavesAsimetricas() {
-        Assimetrico ac;
-        try {
-            ac = new Assimetrico(1024);
-            ac.createKeys();
-            ac.writeToFile("KeyPair/publicKey", ac.getPublicKey().getEncoded());
-            ac.writeToFile("KeyPair/privateKey", ac.getPrivateKey().getEncoded());
-            String str = new String(ac.getPublicKey().getEncoded(), StandardCharsets.UTF_8);
-            System.out.println(str);
-            //System.out.println("PublicKey:"+ac.getPublicKey().getEncoded());
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
+    /**
+     * Insere período de inicio e fim da licença
+     * @param jsonDecoded dados em formato Json
+     * @return dados com período da licença inseridos
+     */
     private static String insereValidade(String jsonDecoded) {
         // Parse to Json the LicençaDados class.
         ObjectMapper mapper = new ObjectMapper();
@@ -134,6 +118,10 @@ public class License {
         return null;
     }
 
+    /**
+     * Cria o ficheiro de licença (.lic) com base nos dados recebidos
+     * @param jsonDados dados a serem inseridos no ficheiro
+     */
     private static void gerarLic(String jsonDados) {
         System.out.print(ANSI_YELLOW + "A gerar Licença..." + ANSI_RESET);
 
@@ -161,6 +149,10 @@ public class License {
         }
     }
 
+    /**
+     * Adiciona dados ao ficheiro
+     * @param json dados a serem inseridos
+     */
     private static void addToFile(String json){
 
         try {
@@ -176,6 +168,9 @@ public class License {
 
     }
 
+    /**
+     * Lista as licenças geradas até à data
+     */
     public static void listarTodosLic() {
         new File("lic/").mkdirs();
         try {
@@ -202,7 +197,10 @@ public class License {
     }
 
 
-
+    /**
+     * Formata a informação uma tabela
+     * @param arrLics lista de licenças geradas
+     */
     private static void printDataTable(ArrayList<LicencaDadosJson> arrLics) {
         String leftAlignFormat = "| %-15s | %-19s | %-8s | %-40s | %-16s |%n";
 
@@ -220,6 +218,11 @@ public class License {
         System.out.format("+-----------------+---------------------+----------+------------------------------------------+------------------+%n");
     }
 
+    /**
+     * Obtém a validade da licença em dias
+     * @param atual licença a ser analisada
+     * @return número de dias restantes na licença
+     */
     private static String getValidade(LicencaDadosJson atual) {
         try {
             Calendar cal = Calendar.getInstance();

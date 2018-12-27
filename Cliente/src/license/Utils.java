@@ -9,12 +9,20 @@ import java.util.Enumeration;
 
 public class Utils {
 
+    /**
+     * Obtém informações sobre o processador instalado na máquina
+     * @return informações sobre o processador instalado na máquina 
+     */
     public static String getCPU() {
         String cpu = HardwareInfo.getProcessorInfo().getFullInfo().get("Name");
         cpu += " - " + HardwareInfo.getProcessorInfo().getFullInfo().get("ProcessorId");
         return cpu;
     }
 
+    /**
+     * Obtém informações sobre a motherboard instalada na máquina
+     * @return informações sobre a motherboard instalada na máquina 
+     */
     public static String getMB() {
         String mb = HardwareInfo.getMotherboardInfo().getFullInfo().get("Manufacturer");
         mb += " " + HardwareInfo.getMotherboardInfo().getFullInfo().get("Product");
@@ -22,10 +30,18 @@ public class Utils {
         return mb;
     }
 
+    /**
+     * Obtém informações sobre placas gráficas instaladas na máquina
+     * @return informações sobre placas gráficas 
+     */
     public static String getGC() {
         return HardwareInfo.getGraphicsCardInfo().getGraphicsCards().get(0).getName();
     }
 
+    /**
+     * Obtém os endereços MAC das placas de rede instaladas na máquina
+     * @return MAC Address
+     */
     public static String getNW() {
         try {
             Enumeration<NetworkInterface> ni = NetworkInterface.getNetworkInterfaces();
@@ -53,7 +69,11 @@ public class Utils {
         }
     }
 
-    //Remove as placas de rede virtuais
+    /**
+     * Verifica se endereço MAC é virtual
+     * @param mac MAC Address a analisar
+     * @return True se for uma placa de rede virtual, False caso contrário
+     */
     private static boolean isVMMac(byte[] mac) {
         if(null == mac) return false;
         byte invalidMacs[][] = {
@@ -75,10 +95,21 @@ public class Utils {
         return false;
     }
 
+    /**
+     * Obtém informações da máquina (Motherboard, CPU, Placa Gráfica e Enderecos MAC das placas de rede)
+     * @return informações da máquina
+     */
     public static DadosMaquina getSystemInfo(){
         return new DadosMaquina(Utils.getMB(), Utils.getCPU(), Utils.getNW(), Utils.getGC());
     }
 
+    /** 
+     * Lê ficheito em bytes
+     * @param f ficheiro a ser lido
+     * @return bytes do ficheiro lido
+     * @throws IOException
+     * @see File
+     */
     public static byte[] getFileInBytes(File f) throws IOException {
         FileInputStream fis = new FileInputStream(f);
         byte[] fbytes = new byte[(int) f.length()];
@@ -87,6 +118,12 @@ public class Utils {
         return fbytes;
     }
 
+    /**
+     * Trato o texto dividindo-o por linhas
+     * @param texto texto a ser lido
+     * @return linhas separadas
+     * @throws IOException
+     */
     public static String[] extrairLinhas(String texto) throws IOException {
         LineNumberReader reader = new LineNumberReader(new StringReader(texto));
         String currentLine = null;

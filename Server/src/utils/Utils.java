@@ -1,31 +1,16 @@
 package utils;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.security.KeyFactory;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.util.Base64;
 
 public class Utils {
 
-
-    public static String encriptarB64(String msg) {
-        String base64encodedString = Base64.getEncoder().encodeToString(msg.getBytes(StandardCharsets.UTF_8));
-        return base64encodedString;
-    }
-
-    public static byte[] desencriptarB64(String msg) {
-        // Decode
-        byte[] base64decodedBytes = Base64.getDecoder().decode(msg);
-        return base64decodedBytes;
-        //return new String(base64decodedBytes, StandardCharsets.UTF_8);
-    }
-
-
+    /**
+     * Lê ficheito em bytes
+     * @param f ficheiro a ser lido
+     * @return bytes do ficheiro lido
+     * @throws IOException
+     * @see File
+     */
     public static byte[] getFileInBytes(File f) throws IOException {
         FileInputStream fis = new FileInputStream(f);
         byte[] fbytes = new byte[(int) f.length()];
@@ -34,6 +19,12 @@ public class Utils {
         return fbytes;
     }
 
+    /**
+     * Trato o texto dividindo-o por linhas
+     * @param texto texto a ser lido
+     * @return linhas separadas
+     * @throws IOException
+     */
     public static String[] extrairLinhas(String texto) throws IOException {
         LineNumberReader reader = new LineNumberReader(new StringReader(texto));
         String[] lines = texto.split("\n");
@@ -49,44 +40,4 @@ public class Utils {
         }
         return linhas;
     }
-
-    public static PrivateKey readFilePriv(String path)  {
-        try {
-            InputStream in = Utils.class.getResourceAsStream("/keys/"+path);
-            byte[] fbytes = new byte[(int) in.available()];
-            in.read(fbytes);
-            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(fbytes);
-            KeyFactory kf = KeyFactory.getInstance("RSA");
-            return kf.generatePrivate(spec);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public static PublicKey readFilePub(String path)  {
-        try {
-            InputStream in = Utils.class.getResourceAsStream("/keys/"+path);
-            byte[] fbytes = new byte[(int) in.available()];
-            in.read(fbytes);
-            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(fbytes);
-            KeyFactory kf = KeyFactory.getInstance("RSA");
-            return kf.generatePublic(spec);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-
 }

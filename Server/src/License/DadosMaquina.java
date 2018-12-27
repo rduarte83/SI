@@ -1,7 +1,6 @@
 package License;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -21,9 +20,8 @@ class DadosMaquinaDeserializer extends StdDeserializer<DadosMaquina> {
 
     @Override
     public DadosMaquina deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException {
         JsonNode node = jp.getCodec().readTree(jp);
-        //System.out.println(node.toString());
         String mb =  node.get("mb").asText();
         String cpu =  node.get("cpu").asText();
         String mac = node.get("mac").asText();
@@ -41,7 +39,6 @@ public class DadosMaquina {
     private String gc;
 
     // Construtor
-
     public DadosMaquina(String mb, String cpu, String mac, String gc) {
         this.mb = mb;
         this.cpu = cpu;

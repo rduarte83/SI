@@ -10,6 +10,15 @@ import java.util.*;
 
 public class CartaoBiblioteca {
 
+    /**
+     * Verifica e valida a assinatura
+     * <p> Verifica a validade do certificado
+     * <p> Valida o emissor do certificado
+     * @param textoEmClaro
+     * @param assinatura
+     * @param certificado
+     * @return True se assinatura válida, False caso contrário
+     */
     public static boolean validarAssinatura(String textoEmClaro, byte[] assinatura, String certificado) {
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
@@ -39,7 +48,6 @@ public class CartaoBiblioteca {
 
             PublicKey pbk = xCert.getPublicKey();
             //xCert.verify(pbk);
-
             //Verifica a entidade emissora
             String emissor = xCert.getIssuerX500Principal().getName();
             if (!(emissor.contains("OU=subECEstado"))) {
@@ -48,7 +56,6 @@ public class CartaoBiblioteca {
 
             byte[] buffSign = assinatura;
             byte[] byteTClaro = textoEmClaro.getBytes(StandardCharsets.UTF_8);
-
             //Verifica assinatura
             Signature sg = Signature.getInstance("SHA256withRSA");
             sg.initVerify(pbk);

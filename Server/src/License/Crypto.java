@@ -20,6 +20,15 @@ import static License.License.PRIVATE_KEY;
 
 public class Crypto {
 
+    /**
+     * Gera uma chave simétrica
+     * <p>Encripta o texto em claro simetricamente (AES) e converte para Base64
+     * <p>Encripta a chave simétrica assimetricamente(RSA) e converte para Base64
+     * <p>Concatena os 2 elementos e converte para bytes
+     * @param plainText texto em claro
+     * @param publicKey chave pública
+     * @return byte[] criptograma+chave encriptada
+     */
     public static byte[] encriptarTudo(String plainText, String publicKey)
     {
         String resposta = "";
@@ -43,55 +52,21 @@ public class Crypto {
         return Base64.getEncoder().encode(resposta.getBytes(StandardCharsets.UTF_8));
     }
 
-    // Decifra
-    public static LicencaDadosJson desencriptarLicencaDados ( String filename ) {
-        try {
-            // Recebe .lic
-            byte[] ficheiroDatBytes = Utils.getFileInBytes(new File(filename));
-
-            // Converter para String e Tirar o Base 64
-            String dadosDatDecoded = new String(Base64.getDecoder().decode(ficheiroDatBytes), StandardCharsets.UTF_8);
-
-            //chave = ( ultimaLinha de em Asymetrico )
-            String [] linhasB64 = Utils.extrairLinhas(dadosDatDecoded);
-
-            byte[] criptograma = Base64.getDecoder().decode(linhasB64[0]);
-
-            // Texto codificado Sym + "\n" + Chave Asym
-            String criptogramaDecoded = new String ( criptograma, StandardCharsets.UTF_8);
-            String [] linhasSymEAsymB64 = Utils.extrairLinhas(criptogramaDecoded);
-
-            byte[] textoClaro = Base64.getDecoder().decode(linhasSymEAsymB64[0]);
-            byte[] chaveSym = Base64.getDecoder().decode(linhasSymEAsymB64[1]);
-
-            PrivateKey privateKey = Crypto.loadPrivateKey(PRIVATE_KEY); // Load Private Key From File.
-
-            String texto = Crypto.desencriptar(privateKey, textoClaro, chaveSym);
-
-            // Encoded
-            String jsonEncoded = texto.substring( texto.indexOf("/*TEXTOCLARO*/")+"/*TEXTOCLARO*/".length(), texto.indexOf("/*ENDTEXTOCLARO*/") );
-
-            // Decoded
-            String jsonDecoded = new String(Base64.getDecoder().decode(jsonEncoded), StandardCharsets.UTF_8);
-
-            ObjectMapper mapper = new ObjectMapper();
-            LicencaDadosJson ldLic = mapper.readValue(jsonDecoded, LicencaDadosJson.class);
-            return ldLic;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    /**
+     * Desencripta assimetricamente a chave simétrica
+     * <p>Desencripta o criptograma usando a chave anterior
+     * @param privateKey chave privada usada na desencriptação assimétrica
+     * @param byteCipherText texto cifrado
+     * @param encryptedKey chave simétrica cifrada assimetricamente
+     * @return String - texto em claro
+     * @see PrivateKey
+     */
     public static String desencriptar(PrivateKey privateKey, byte[] byteCipherText, byte[] encryptedKey) {
         try {
-            //On the client side, decrypt symmetric key using RSA private key
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.PRIVATE_KEY, privateKey);
             byte[] decryptedKey = cipher.doFinal(encryptedKey);
 
-            //Decrypt the cipher using decrypted symmetric key
-            //Convert bytes to AES SecretKey
             SecretKey originalKey = new SecretKeySpec(decryptedKey ,0, decryptedKey.length, "AES");
 
             Cipher aesCipher = Cipher.getInstance("AES");
@@ -114,20 +89,17 @@ public class Crypto {
         return null;
     }
 
-    public static String readFile(String path) throws IOException
-    {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
-        return new String(encoded, StandardCharsets.UTF_8);
-    }
-
+    /**
+     * Gera uma chave simétrica de 128bits
+     * @return
+     */
     public static String createSymKey() {
         try {
-            //Generate Symmetric Key (AES with 128 bits)
             KeyGenerator generator = null;
             generator = KeyGenerator.getInstance("AES");
             generator.init(128); // The AES key size in number of bits
             SecretKey secKey = generator.generateKey();
-            //Convert to string - Base64 encoding
+
             String stringKey = Base64.getEncoder().encodeToString(secKey.getEncoded());
 
             return stringKey;
@@ -138,13 +110,12 @@ public class Crypto {
         return null;
     }
 
-    public static KeyPair createAsymKeys() throws NoSuchAlgorithmException {
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-        kpg.initialize(2048);
-        KeyPair pair = kpg.generateKeyPair();
-        return pair;
-    }
-
+    /**
+     * Converte uma chave pública de Base64 para PublicKey
+     * @param stored chave pública em Base64
+     * @return PublicKey chave pública
+     * @see PublicKey
+     */
     public static PublicKey loadPublicKey(String stored) {
         try {
             byte[] data = Base64.getDecoder().decode(stored);
@@ -160,6 +131,12 @@ public class Crypto {
         return null;
     }
 
+    /**
+     * Converte uma chave privada de Base64 para PrivateKey
+     * @param stored chave privada em Base64
+     * @return PrivateKey chave privada
+     * @see PrivateKey
+     */
     public static PrivateKey loadPrivateKey(String stored) {
         try {
             byte[] data = Base64.getDecoder().decode(stored);
@@ -176,6 +153,13 @@ public class Crypto {
         return null;
     }
 
+    /**
+     * Encripta um texto com encriptação simétrica AES
+     * @param secKey chave simétrica gerada
+     * @param plainText texto em claro
+     * @return byte[] - texto cifrado em bytes
+     * @see SecretKey
+     */
     public static byte[] encryptAES(SecretKey secKey, String plainText) {
         try {
             //Encrypt plain text using AES
@@ -198,6 +182,13 @@ public class Crypto {
         return null;
     }
 
+    /** Encripta uma chave com encriptação assimétrica RSA
+     * @param symKey chave a ser encriptada
+     * @param publicKey chave pública usada para a encriptação
+     * @return
+     * @see SecretKey
+     * @see PublicKey
+     */
     public static byte[] encryptRSA(SecretKey symKey, PublicKey publicKey) {
         try {
             //Encrypt the key using RSA public key
