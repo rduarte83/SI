@@ -15,7 +15,7 @@ public class Assinatura{
 
     /**
      * Obtém a chave public e privado do Keypair gerado pela função createAsymKeys()
-     * Grava as chaves para ficheiros
+     * <p>Grava as chaves para ficheiros
      */
     public static void generateNewAsymKeys() {
         try {
@@ -33,7 +33,7 @@ public class Assinatura{
 
     /**
      * Cria um par de chaves com um 1024bytes de tamanho 1024 com base no algoritmo RSA
-     * @return KeyPair par de chaves
+     * @return Par de chaves
      * @throws NoSuchAlgorithmException
      * @see KeyPair
      */
@@ -83,7 +83,7 @@ public class Assinatura{
     /**
      * Lê a chave privada dum ficheiro
      * @param filename nome do ficheiro
-     * @return PrivateKey chave privada contida no ficheiro
+     * @return chave privada contida no ficheiro
      * @see PrivateKey
      */
     public static PrivateKey loadPriKeyFromFile(String filename) {
@@ -106,9 +106,9 @@ public class Assinatura{
 
     /**
      * Verifica a assinatura
-     * @param plainText Texto em claro
-     * @param signature Assinatura
-     * @param publicKey Chave pública
+     * @param plainText texto em claro
+     * @param signature assinatura
+     * @param publicKey chave pública
      * @return True se assinatura válida, False em caso contrário
      */
     public static boolean verifica(String plainText, String signature, PublicKey publicKey) {
