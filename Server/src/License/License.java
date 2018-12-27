@@ -94,10 +94,9 @@ public class License {
     /**
      * Insere período de inicio e fim da licença
      * @param jsonDecoded dados em formato Json
-     * @return dados com período da licença inseridos
+     * @return dados com validade inseridos e colocados na nossa classe
      */
     private static String insereValidade(String jsonDecoded) {
-        // Parse to Json the LicençaDados class.
         ObjectMapper mapper = new ObjectMapper();
         try {
 

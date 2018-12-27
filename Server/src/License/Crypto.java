@@ -1,22 +1,13 @@
 package License;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import utils.Utils;
-
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
-
-import static License.License.PRIVATE_KEY;
 
 public class Crypto {
 

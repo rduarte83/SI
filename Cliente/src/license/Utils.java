@@ -1,7 +1,6 @@
 package license;
 
 import org.jutils.jhardware.HardwareInfo;
-
 import java.io.*;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -87,11 +86,9 @@ public class Utils {
                 {0x00, 0x03, (byte)0xFF},       //Virtual-PC
                 {0x00, 0x15, 0x5D}              //Hyper-V
         };
-
         for (byte[] invalid: invalidMacs){
             if (invalid[0] == mac[0] && invalid[1] == mac[1] && invalid[2] == mac[2]) return true;
         }
-
         return false;
     }
 
