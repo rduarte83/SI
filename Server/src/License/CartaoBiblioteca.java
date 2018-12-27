@@ -42,7 +42,7 @@ public class CartaoBiblioteca {
 
             //Verifica a entidade emissora
             String emissor = xCert.getIssuerX500Principal().getName();
-            if (!(emissor.contains("OU=subECEstado,OU=Cartão de Cidadão,O=Instituto dos Registos e do Notariado I.P.,C=PT"))) {
+            if (!(emissor.contains("OU=subECEstado"))) {
                 return false;
             }
 

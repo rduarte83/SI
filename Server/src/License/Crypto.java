@@ -1,7 +1,11 @@
-package utils;
+package License;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import utils.Utils;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -11,6 +15,8 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+
+import static License.License.PRIVATE_KEY;
 
 public class Crypto {
 
@@ -35,6 +41,46 @@ public class Crypto {
 
         resposta += Base64.getEncoder().encodeToString(encryptedKey);
         return Base64.getEncoder().encode(resposta.getBytes(StandardCharsets.UTF_8));
+    }
+
+    // Decifra
+    public static LicencaDadosJson desencriptarLicencaDados ( String filename ) {
+        try {
+            // Recebe .lic
+            byte[] ficheiroDatBytes = Utils.getFileInBytes(new File(filename));
+
+            // Converter para String e Tirar o Base 64
+            String dadosDatDecoded = new String(Base64.getDecoder().decode(ficheiroDatBytes), StandardCharsets.UTF_8);
+
+            //chave = ( ultimaLinha de em Asymetrico )
+            String [] linhasB64 = Utils.extrairLinhas(dadosDatDecoded);
+
+            byte[] criptograma = Base64.getDecoder().decode(linhasB64[0]);
+
+            // Texto codificado Sym + "\n" + Chave Asym
+            String criptogramaDecoded = new String ( criptograma, StandardCharsets.UTF_8);
+            String [] linhasSymEAsymB64 = Utils.extrairLinhas(criptogramaDecoded);
+
+            byte[] textoClaro = Base64.getDecoder().decode(linhasSymEAsymB64[0]);
+            byte[] chaveSym = Base64.getDecoder().decode(linhasSymEAsymB64[1]);
+
+            PrivateKey privateKey = Crypto.loadPrivateKey(PRIVATE_KEY); // Load Private Key From File.
+
+            String texto = Crypto.desencriptar(privateKey, textoClaro, chaveSym);
+
+            // Encoded
+            String jsonEncoded = texto.substring( texto.indexOf("/*TEXTOCLARO*/")+"/*TEXTOCLARO*/".length(), texto.indexOf("/*ENDTEXTOCLARO*/") );
+
+            // Decoded
+            String jsonDecoded = new String(Base64.getDecoder().decode(jsonEncoded), StandardCharsets.UTF_8);
+
+            ObjectMapper mapper = new ObjectMapper();
+            LicencaDadosJson ldLic = mapper.readValue(jsonDecoded, LicencaDadosJson.class);
+            return ldLic;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static String desencriptar(PrivateKey privateKey, byte[] byteCipherText, byte[] encryptedKey) {
