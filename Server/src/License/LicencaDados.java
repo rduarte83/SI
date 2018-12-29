@@ -3,9 +3,6 @@ package License;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import java.security.PublicKey;
-
-
 class LicencaDadosJson{
 
     private String primeiroNome;

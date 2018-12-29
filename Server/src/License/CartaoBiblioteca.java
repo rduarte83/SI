@@ -1,12 +1,15 @@
 package License;
 
-import javax.crypto.Cipher;
-import java.io.*;
-import java.net.JarURLConnection;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.EnumSet;
 
 public class CartaoBiblioteca {
 
@@ -26,6 +29,7 @@ public class CartaoBiblioteca {
             byte[] byteCert = certificado.getBytes(StandardCharsets.UTF_8);
 
             if(!verificarCertificacao(byteCert)){
+                System.out.println("O certificado não é válido.");
                 return false;
             }
 
