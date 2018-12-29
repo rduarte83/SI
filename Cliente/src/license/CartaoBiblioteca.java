@@ -21,7 +21,6 @@ public class CartaoBiblioteca {
         }
     }
     static PTEID_ReaderContext context;
-    final static String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
 
     /**
      * Verifica se existe algum leitor de CC válido
@@ -102,7 +101,7 @@ public class CartaoBiblioteca {
      */
     public static String assinar(String stringB64) {
         try {
-            String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
+            String alias = "CITIZEN SIGNATURE CERTIFICATE";
             Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);
