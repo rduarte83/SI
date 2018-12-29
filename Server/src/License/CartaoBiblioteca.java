@@ -35,12 +35,30 @@ public class CartaoBiblioteca {
 
             X509Certificate xCert = (X509Certificate)cf.generateCertificate(new ByteArrayInputStream(byteCert));
 
-            //Verifica a validade do certificado
+            /*//Verifica a validade do certificado - OLD
             Date d = new Date();
-            if (d.compareTo(xCert.getNotBefore())!= 1 && d.compareTo(xCert.getNotAfter())!= -1) { return false; }
+            if (d.compareTo(xCert.getNotBefore())!= 1 && d.compareTo(xCert.getNotAfter())!= -1) { return false; }*/
 
-            PublicKey pbk = xCert.getPublicKey();
-            //xCert.verify(pbk);
+            //Verifica raiz de confiança - não funciona
+//            Map<X500Principal, Set<X509Certificate>> subjectToCaCerts;
+//            subjectToCaCerts = new LinkedHashMap<>();
+//            X500Principal issuer = xCert.getIssuerX500Principal();
+//            Set<X509Certificate> subjectCaCerts = subjectToCaCerts.get(issuer);
+//
+//            if ( subjectCaCerts != null )
+//                for (X509Certificate caCert : subjectCaCerts) {
+//                    PublicKey publicKey = caCert.getPublicKey();
+//                    try {
+//                        xCert.verify(publicKey);
+//                    } catch (NoSuchProviderException | NoSuchAlgorithmException | InvalidKeyException | SignatureException | CertificateException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+
+
+
+
+                    PublicKey pbk = xCert.getPublicKey();
             //Verifica a entidade emissora
             String emissor = xCert.getIssuerX500Principal().getName();
             if (!(emissor.contains("OU=subECEstado"))) {
@@ -64,6 +82,10 @@ public class CartaoBiblioteca {
     }
 
 
+    /** Valida o certificado, através da construção e subsequente validação do caminho de certificação
+     * @param byteCert certifica a ser verificado
+     * @return true se válido, falso caso contrário
+     */
     public static boolean verificarCertificacao(byte[] byteCert){
 
         try{
@@ -77,9 +99,9 @@ public class CartaoBiblioteca {
             X509Certificate x509Cert = (X509Certificate) cf.generateCertificate(fis);
 
             PublicKey pubKey = x509Cert.getPublicKey();
-            x509Cert.verify(pubKey); //se não der erro, é um certificado assinado por ele próprio (certificado de raiz de confiança)
+            x509Cert.verify(pubKey); //(Certificado de raiz de confiança)
 
-            x509Cert.checkValidity(); //se não der erro é porque está dentro da validade
+            x509Cert.checkValidity(); //Verifica validade
 
             KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
             ks.load(null, null);
@@ -114,11 +136,10 @@ public class CartaoBiblioteca {
             for(int i=0; i<certificados.length ; i++) {
                 File fCt = new File(certificados[i]);
                 FileInputStream fisCt = new FileInputStream(fCt);
-                System.out.println(certificados[i]);
                 CertificateFactory cfi =   CertificateFactory.getInstance("X509");
                 X509Certificate x509Certificate = (X509Certificate) cfi.generateCertificate(fisCt);
 
-                x509Certificate.checkValidity();//verifica se esta dentro da validade;
+                x509Certificate.checkValidity();//verifica validade;
 
                 ctArrayList.add(x509Certificate);
                 fisCt.close();
@@ -129,7 +150,7 @@ public class CartaoBiblioteca {
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteCert);
             x509Cert = (X509Certificate) cf.generateCertificate(byteArrayInputStream);
 
-            x509Cert.checkValidity(); //se não der erro é porque está dentro da validade
+            x509Cert.checkValidity(); //verifca validade
 
             //controi caminho de certificação
             //defines the end-user certificate as a selector
