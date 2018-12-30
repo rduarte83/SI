@@ -24,7 +24,6 @@ public class CartaoBiblioteca {
      */
     public static boolean validarAssinatura(String textoEmClaro, byte[] assinatura, String certificado) {
         try {
-
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             byte[] byteCert = certificado.getBytes(StandardCharsets.UTF_8);
 
@@ -32,7 +31,6 @@ public class CartaoBiblioteca {
                 System.out.println("O certificado não é válido.");
                 return false;
             }
-
             X509Certificate xCert = (X509Certificate)cf.generateCertificate(new ByteArrayInputStream(byteCert));
 
             /*//Verifica a validade do certificado - OLD
@@ -55,16 +53,12 @@ public class CartaoBiblioteca {
 //                    }
 //                }
 
-
-
-
-                    PublicKey pbk = xCert.getPublicKey();
+            PublicKey pbk = xCert.getPublicKey();
             //Verifica a entidade emissora
             String emissor = xCert.getIssuerX500Principal().getName();
             if (!(emissor.contains("OU=subECEstado"))) {
                 return false;
             }
-
             byte[] buffSign = assinatura;
             byte[] byteTClaro = textoEmClaro.getBytes(StandardCharsets.UTF_8);
             //Verifica assinatura
@@ -131,7 +125,6 @@ public class CartaoBiblioteca {
                     ccPath+"EC de Autenticacao do Cartao de Cidadao 0014.cer",
                     ccPath+"ECRaizEstado.crt"
             };
-
             ArrayList<X509Certificate> ctArrayList = new ArrayList<>();
             for(int i=0; i<certificados.length ; i++) {
                 File fCt = new File(certificados[i]);
@@ -144,13 +137,12 @@ public class CartaoBiblioteca {
                 ctArrayList.add(x509Certificate);
                 fisCt.close();
             }
-
             cf = CertificateFactory.getInstance("X.509");
 
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteCert);
             x509Cert = (X509Certificate) cf.generateCertificate(byteArrayInputStream);
 
-            x509Cert.checkValidity(); //verifca validade
+            x509Cert.checkValidity(); //verifica validade
 
             //controi caminho de certificação
             //defines the end-user certificate as a selector
@@ -173,9 +165,6 @@ public class CartaoBiblioteca {
             CertPath cp = null;
             CertPathBuilderResult cpbr = cpb.build(pkixBParams);
             cp = cpbr.getCertPath();
-            //System.out.println(cp.getCertificates().get(0).toString().split("\n")[3].split(",")[0].split("=")[1]);
-            //System.out.println("Certification path built with success!");
-            //---------------------------------------------------------------------------------------------------
 
             //Validação de um caminho de certificação
             PKIXParameters pkixParams = new PKIXParameters(ks);
@@ -201,8 +190,6 @@ public class CartaoBiblioteca {
         } catch (CertificateException | NoSuchAlgorithmException | InvalidKeyException | NoSuchProviderException | SignatureException | KeyStoreException | InvalidAlgorithmParameterException | CertPathBuilderException | CertPathValidatorException | IOException e) {
             e.printStackTrace();
         }
-
         return false;
-
     }
 }
