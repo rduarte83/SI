@@ -33,10 +33,6 @@ public class Server {
                         System.out.println(ANSI_RED+"Insira o nome do ficheiro."+ANSI_RESET);
                     }
                     return;
-                case "-ler":  // Comando Ler
-                    //String filename = args[index + 1];
-                    //License.decifrar(filename);
-                    return;
                 case "-list":
                     License.listarTodosLic();
                     return;
@@ -54,7 +50,6 @@ public class Server {
         System.out.println(ANSI_YELLOW+"Pode usar os seguintes comandos:"+ANSI_RESET);
         System.out.println(ANSI_YELLOW+"-gerar {nome do ficheiro dat} ( tem de estar na pasta Dat! )"+ANSI_RESET);
         System.out.println(ANSI_YELLOW+"-list ( Listar os dados das Licenças Geradas)"+ANSI_RESET);
-        System.out.println(ANSI_YELLOW+"-ler {nome do ficheiro dat}"+ANSI_RESET);
         System.out.println(ANSI_YELLOW+"-help ( para obter a lista de comandos."+ANSI_RESET);
     }
 }

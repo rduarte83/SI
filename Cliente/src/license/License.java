@@ -34,7 +34,6 @@ public class License {
             if (CartaoBiblioteca.isCardPresent()) {
 
                 if( isRegistered() )  {
-                    System.out.println(ANSI_YELLOW+"Está registado."+ANSI_RESET);
                     System.out.println(ANSI_YELLOW+"1 - Ir para o programa"+ANSI_RESET);
                     System.out.println(ANSI_YELLOW+"2 - Ver dados da Licença"+ANSI_RESET);
                     System.out.println(ANSI_YELLOW+"3 - Sair do programa"+ANSI_RESET);
@@ -108,7 +107,7 @@ public class License {
             }
 
             // ( Ver se os dados da maquina coincidem com os dados do ficheiro   )
-            System.out.println(ANSI_YELLOW+"A verificar os dados da maquina..."+ANSI_RESET);
+            System.out.print(ANSI_YELLOW+"A verificar os dados da maquina..."+ANSI_RESET);
             if ( !verificarDadosMaquina()){
                 return false;
             }

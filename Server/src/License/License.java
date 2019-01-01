@@ -174,6 +174,7 @@ public class License {
         new File("lic/").mkdirs();
         try {
             File file = new File("lic/all.lic");
+            if ( !file.exists() ) return;
             ArrayList<LicencaDadosJson> arrayLics = new ArrayList<LicencaDadosJson>();
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
