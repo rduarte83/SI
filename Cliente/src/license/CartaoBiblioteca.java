@@ -101,7 +101,7 @@ public class CartaoBiblioteca {
      */
     public static String assinar(String stringB64) {
         try {
-            String alias = "CITIZEN SIGNATURE CERTIFICATE";
+            String alias = "CITIZEN AUTHENTICATION CERTIFICATE";
             Provider prov = Security.getProvider("SunPKCS11-CartaoCidadao");
             KeyStore ks = KeyStore.getInstance("PKCS11", prov);
             ks.load(null, null);

@@ -52,22 +52,30 @@ public class License {
                     }
                     return;
                 } else {
-                    System.out.println(ANSI_YELLOW+"Não está registado."+ANSI_RESET);
-                    System.out.println(ANSI_YELLOW+"Iniciar o registo? (S/N)"+ANSI_RESET);
-                    Scanner sc = new Scanner(System.in);
-                    String opt = sc.nextLine();
-                    switch (opt.toLowerCase()) {
-                        case "s":
-                        case "sim":
-                            startRegistration();
-                            System.exit(0);
-                            break;
-                        case "n":
-                        case "nao":
-                        case "não":
-                            System.exit(0);
-                            break;
+                    boolean sair = true;
+                    while ( sair ){
+                        System.out.println(ANSI_YELLOW+"Não está registado."+ANSI_RESET);
+                        System.out.println(ANSI_YELLOW+"Iniciar o registo? (S/N)"+ANSI_RESET);
+                        Scanner sc = new Scanner(System.in);
+                        String opt = sc.nextLine();
+                        switch (opt.toLowerCase()) {
+                            case "s":
+                            case "sim":
+                                sair=false;
+                                startRegistration();
+                                System.exit(0);
+                                break;
+                            case "n":
+                            case "nao":
+                            case "não":
+                                System.exit(0);
+                                break;
+                            default:
+                                System.out.println("Opção inválida.");
+                                break;
+                        }
                     }
+
                 }
             } else {
                 System.out.println(ANSI_RED+"Cartão não encontrado."+ANSI_RESET);
@@ -98,28 +106,34 @@ public class License {
 
             // Desencriptar a Licença
             if ( !Crypto.desencriptarLicenca(LicencaDados.getIdentificacaoCivil()) ) {
+                System.out.println(ANSI_RED+"Licença inválida, erro ao desencriptar licença!"+ANSI_RESET);
                 return false;
             }
 
             // Verificar Cartão de Cidadão
             if ( !verificarCartaoCidadao() ){
+                System.out.println(ANSI_RED+"Licença inválida, dados de utilizador inválidos!"+ANSI_RESET);
                 return false;
             }
 
             // ( Ver se os dados da maquina coincidem com os dados do ficheiro   )
             System.out.print(ANSI_YELLOW+"A verificar os dados da maquina..."+ANSI_RESET);
             if ( !verificarDadosMaquina()){
+                System.out.println(ANSI_RED+"Licença inválida, dados da máquina não coincidem!"+ANSI_RESET);
                 return false;
             }
             System.out.println(ANSI_GREEN+"Ok"+ANSI_RESET);
 
             // Verifica se o programa foi alterado ou não
             if ( !verificaNomeVersao() ) {
+                System.out.println(ANSI_RED+"Licença inválida, nome e/ou versão da aplicação não coincidem!"+ANSI_RESET);
                 return false;
             }
 
             // ( Ver o tamanho do ficheiro e comprar. ( .jar ) )
             if ( !verificarProgramaAlterado() ) {
+                System.out.println(ANSI_RED+"Licença inválida, programa foi alterado!"+ANSI_RESET);
+
                 return false;
             }
             return true;
@@ -209,30 +223,30 @@ public class License {
             if (  Crypto.ldjLic == null  && Crypto.desencriptarLicenca(LicencaDados.getIdentificacaoCivil()+".lic")) return;
             LicencaDadosJson lic = Crypto.ldjLic;
 
-            System.out.println("Aplicação encontra-se registada.");
+            System.out.println(ANSI_YELLOW+"Aplicação encontra-se registada."+ANSI_RESET);
 
             // Mostrar informaçao ( Sobre a Aplicação )
-            System.out.println("-Dados do Cliente.jar-");
+            System.out.println(ANSI_YELLOW+"-Dados do Cliente.jar-"+ANSI_RESET);
             System.out.println("Nome da App:"+ lic.getNomeDaApp() );
             System.out.println("Versão:"+ lic.getVersao() );
             System.out.println("Inicio da Validade:"+ lic.getInicioValidadeLicenca() );
             System.out.println("Fim da Validade:"+ lic.getFimValidadeLicenca() );
 
             // Dados da Maquina
-            System.out.println("-Dados da Maquina-");
+            System.out.println(ANSI_YELLOW+"-Dados da Maquina-"+ANSI_RESET);
             System.out.println("CPU:"+lic.getDadosMaquina().getCpu());
             System.out.println("GPU:"+lic.getDadosMaquina().getGc());
             System.out.println("MAC:"+lic.getDadosMaquina().getMac());
             System.out.println("MotherBoard:"+lic.getDadosMaquina().getMb());
 
             // Dados do Utilizador.
-            System.out.println("-Dados do Utilizador-");
+            System.out.println(ANSI_YELLOW+"-Dados do Utilizador-"+ANSI_RESET);
             System.out.println("Email:"+lic.getEmail());
             System.out.println("Primeiro nome:"+lic.getPrimeiroNome());
             System.out.println("Ultimo nome:"+lic.getUltimoNome());
             System.out.println("Identificação Civil:"+lic.getIdentificacaoCivil());
         }else {
-            System.out.println("Aplicação não se encontra registada.");
+            System.out.println(ANSI_YELLOW+"Aplicação não se encontra registada."+ANSI_RESET);
         }
     }
 
